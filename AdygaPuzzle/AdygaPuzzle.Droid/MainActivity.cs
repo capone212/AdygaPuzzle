@@ -8,19 +8,34 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Util;
 
 using CocosSharp;
 using AdygaPuzzle;
+using System.IO;
+
 
 namespace AdygaPuzzle.Droid
 {
-    [Activity(Label = "AdygaPuzzle.Droid", MainLauncher = true, Icon = "@drawable/icon", 
+    [Activity(Label = "AdygaPuzzle.Droid", MainLauncher = true, Icon = "@drawable/icon",
         AlwaysRetainTaskState = true,
         LaunchMode = LaunchMode.SingleInstance,
+        Theme = "@android:style/Theme.Black.NoTitleBar.Fullscreen",
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
-    public class MainActivity : Activity
+    public class MainActivity : Activity, IMainActivity
     {
         int count = 1;
+        Director _director;
+
+        public void LogInfo(string line)
+        {
+            Log.Info("adyga_puzzle", line);
+        }
+
+        public Stream OpenAsset(string file)
+        {
+            return Assets.Open(file);
+        }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -32,7 +47,7 @@ namespace AdygaPuzzle.Droid
             // Get our game view from the layout resource,
             // and attach the view created event to it
             CCGameView gameView = (CCGameView)FindViewById(Resource.Id.GameView);
-            gameView.ViewCreated += GameDelegate.LoadGame;
+            gameView.ViewCreated += LoadGame;
         }
 
         void LoadGame(object sender, EventArgs e)
@@ -41,14 +56,15 @@ namespace AdygaPuzzle.Droid
 
             if (gameView != null)
             {
-                var contentSearchPaths = new List<string>() { "Fonts", "Sounds" };
+                var contentSearchPaths = new List<string>() { "Fonts", "Sounds", "Images/Animals" };
                 CCSizeI viewSize = gameView.ViewSize;
 
-                int width = 1024;
-                int height = 768;
+                int width = 960;
+                int height = 540;
 
                 // Set world dimensions
                 gameView.DesignResolution = new CCSizeI(width, height);
+                gameView.ResolutionPolicy = CCViewResolutionPolicy.ShowAll;
 
                 // Determine whether to use the high or low def versions of our images
                 // Make sure the default texel to content size ratio is set correctly
@@ -56,7 +72,7 @@ namespace AdygaPuzzle.Droid
                 if (width < viewSize.Width)
                 {
                     contentSearchPaths.Add("Images/Hd");
-                    CCSprite.DefaultTexelToContentSizeRatio = 2.0f;
+                    //CCSprite.DefaultTexelToContentSizeRatio = 2.0f;
                 }
                 else
                 {
@@ -66,9 +82,9 @@ namespace AdygaPuzzle.Droid
 
                 gameView.ContentManager.SearchPaths = contentSearchPaths;
 
-                CCScene gameScene = new CCScene(gameView);
-                gameScene.AddLayer(new GameLayer());
-                gameView.RunWithScene(gameScene);
+                // Construct game scene
+                _director = new Director(this, gameView);
+                _director.RunMenu();
             }
         }
     }
