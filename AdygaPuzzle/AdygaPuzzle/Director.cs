@@ -27,19 +27,27 @@ namespace AdygaPuzzle
         {
             _parent = parent;
             _gameView = gameView;
+            Rand = new Random(Guid.NewGuid().GetHashCode());
             PlayBackgroundMusic();
         }
 
-        public void RunGame(EasingFactory factory)
+        public Random Rand
         {
-            if (_gameScene == null)
-            {
-                _gameScene = new CCScene(_gameView);
-                _gameLayer = new GameLayer(this);
-                _gameScene.AddLayer(_gameLayer);
-                _gameScene.AddLayer(new MenuLayer2(this));
-            }
-            _gameLayer.SetFactory(factory);
+            get; private set;
+        }
+
+        public void RunGame(string animal)
+        {
+            if (_gameScene != null)
+                _gameScene.Dispose();
+
+            if (_gameLayer != null)
+                _gameLayer.Dispose();
+            
+            _gameScene = new CCScene(_gameView);
+            _gameLayer = new GameLayer(this, animal);
+            _gameScene.AddLayer(_gameLayer);
+            _gameScene.AddLayer(new MenuLayer2(this));
             _gameLayer.StartGame();
             _gameView.RunWithScene(_gameScene);
         }

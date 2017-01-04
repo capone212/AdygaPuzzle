@@ -19,6 +19,7 @@ namespace AdygaPuzzle.Droid
 {
     [Activity(Label = "AdygaPuzzle.Droid", MainLauncher = true, Icon = "@drawable/icon",
         AlwaysRetainTaskState = true,
+        ScreenOrientation = ScreenOrientation.Landscape,
         LaunchMode = LaunchMode.SingleInstance,
         Theme = "@android:style/Theme.Black.NoTitleBar.Fullscreen",
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
@@ -71,13 +72,13 @@ namespace AdygaPuzzle.Droid
                 // Of course you're free to have a finer set of image resolutions e.g (ld, hd, super-hd)
                 if (width < viewSize.Width)
                 {
-                    contentSearchPaths.Add("Images/Hd");
+                    //contentSearchPaths.Add("Images/Hd");
                     //CCSprite.DefaultTexelToContentSizeRatio = 2.0f;
                 }
                 else
                 {
-                    contentSearchPaths.Add("Images/Ld");
-                    CCSprite.DefaultTexelToContentSizeRatio = 1.0f;
+                    //contentSearchPaths.Add("Images/Ld");
+                    //CCSprite.DefaultTexelToContentSizeRatio = 1.0f;
                 }
 
                 gameView.ContentManager.SearchPaths = contentSearchPaths;

@@ -33,73 +33,74 @@ namespace AdygaPuzzle
     public class MenuLayer : CCLayerColor
     {
         Director _activity;
+        //"cock", "cow", "donkey", "duck", "goat", "goose", "lamb", "rabbit", "turkey"
+        List<string> _animals;
+        List<CCPoint> _menuPositions = new List<CCPoint>();
 
-        Dictionary<string, EasingFactory> _easings = new Dictionary<string, EasingFactory>();
+        Dictionary<string, CCSprite> _sprites = new Dictionary<string, CCSprite>();
 
-        public MenuLayer(Director activity) : base(CCColor4B.Blue)
+        public MenuLayer(Director activity) : base(CCColor4B.Gray)
         {
             _activity = activity;
-            _easings.Add("none", a => { return a; });
-            _easings.Add("CCEaseBackIn", a => { return new CCEaseBackIn(a); });
-            _easings.Add("CCEaseBackInOut", a => { return new CCEaseBackInOut(a); });
-            _easings.Add("CCEaseBackOut", a => { return new CCEaseBackOut(a); });
-            _easings.Add("CCEaseBounceIn", a => { return new CCEaseBounceIn(a); });
-            _easings.Add("CCEaseBounceInOut", a => { return new CCEaseBounceInOut(a); });
-            _easings.Add("CCEaseBounceOut", a => { return new CCEaseBounceOut(a); });
-            _easings.Add("CCEaseElastic", a => { return new CCEaseElastic(a); });
-            _easings.Add("CCEaseElasticIn", a => { return new CCEaseElasticIn(a); });
-            _easings.Add("CCEaseElasticInOut", a => { return new CCEaseElasticInOut(a); });
-            _easings.Add("CCEaseElasticOut", a => { return new CCEaseElasticOut(a); });
-            _easings.Add("CCEaseExponentialIn", a => { return new CCEaseExponentialIn(a); });
-            _easings.Add("CCEaseExponentialInOut", a => { return new CCEaseExponentialInOut(a); });
-            _easings.Add("CCEaseExponentialOut", a => { return new CCEaseExponentialOut(a); });
-            _easings.Add("CCEaseIn", a => { return new CCEaseIn(a, 2); });
-            _easings.Add("CCEaseInOut", a => { return new CCEaseInOut(a, 2); });
-            _easings.Add("CCEaseOut", a => { return new CCEaseOut(a, 2); });
-
-            _selectedName = "none";
+            _animals = new List<string>(new string[] { "cock", "cow", "donkey", "duck", "goat", "goose", "lamb", "rabbit", "turkey" });
+            for(int i = 0; i < 4; i++)
+            {
+                for (int j=0; j < 2; j++)
+                {
+                    var x = 100 + i * 200 + 75;
+                    var y = 540 - 150 - j * 140 - 50;
+                    _menuPositions.Add(new CCPoint(x, y));
+                }
+            }
         }
 
 
         protected override void AddedToScene()
         {
             base.AddedToScene();
+            try
+            {
+                _sprites.Clear();
+                for (int i = 0; i < _menuPositions.Count; ++i)
+                {
+                    var position = i;
+                    if (position >= _animals.Count)
+                        break;
+                    var name = _animals[position];
+                    var sprite = new CCSprite(name + ".png");
+                    sprite.Position = _menuPositions[i];
+                    _sprites[name] = sprite;
+                    _activity.LogInfo(string.Format("Drawing sprite {0} position x={1} y={2} ", _animals[position], sprite.PositionX, sprite.PositionY));
+                    AddChild(sprite);
+                }
 
-            CCMenuItemFont.FontSize = 50;
-            CCMenuItemFont.FontName = "arial";
-
-            CCMenuItemFont title1 = new CCMenuItemFont("Easing Style");
-            title1.Enabled = false;
-
-            CCMenuItemFont.FontSize = 50;
-
-            var items = from s in _easings
-                        select new CCMenuItemFont(s.Key);
-            var easingTypes = new CCMenuItemToggle(this.menuCallback, items.ToArray());
-
-          
-
-            var label = new CCLabel("StartGame", "Arial", 50, CCLabelFormat.SystemFont);
-            var back = new CCMenuItemLabel(label, this.backCallback);
-
-            CCMenu menu = new CCMenu(
-                title1, easingTypes,  back) { Tag = 36 }; // 9 items.
-
-            menu.AlignItemsInColumns(2, 2, 2, 2, 1);
-
-            AddChild(menu);
-        }
-        string _selectedName = string.Empty;
-        public void menuCallback(object pSender)
-        {
-            var label = ((CCMenuItemToggle)pSender).SelectedItem as CCMenuItemLabel;
-            _selectedName = label.Label.Text;
-            //UXLOG("selected item: %x index:%d", dynamic_cast<CCMenuItemToggle*>(sender)->selectedItem(), dynamic_cast<CCMenuItemToggle*>(sender)->selectedIndex() ); 
+                var touchListener = new CCEventListenerTouchAllAtOnce();
+                touchListener.OnTouchesBegan = OnTouchesBegan;
+                AddEventListener(touchListener, this);
+            }
+            catch (Exception ex)
+            {
+                _activity.LogInfo(string.Format("Error adding to scene {0}", ex));
+            }
         }
 
-        public void backCallback(object pSender)
+        void OnTouchesBegan(List<CCTouch> touches, CCEvent touchEvent)
         {
-            _activity.RunGame(_easings[_selectedName]);
+            // We only care about the first touch:
+            var touch = touches[0];
+            foreach (var p in _sprites)
+            {
+                if (isTouchingPeace(touch, p.Value))
+                {
+                    _activity.RunGame(p.Key);
+                }
+            }
+
+        }
+        bool isTouchingPeace(CCTouch touch, CCSprite peace)
+        {
+            // This includes the rectangular white space around our sprite
+            return peace.BoundingBox.ContainsPoint(touch.Location);
         }
     }
 }

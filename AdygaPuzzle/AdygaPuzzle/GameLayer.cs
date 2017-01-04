@@ -5,6 +5,8 @@ using CocosSharp;
 using Microsoft.Xna.Framework;
 using System.IO;
 
+//_easings.Add("CCEaseBackOut", a => { return new CCEaseBackOut(a); });
+
 namespace AdygaPuzzle
 {
     class Peace
@@ -32,18 +34,18 @@ namespace AdygaPuzzle
         public CCPoint DragStart;
     }
 
-    public delegate CCAction EasingFactory(CCFiniteTimeAction action);
-
     public class GameLayer : CCLayerColor
     {
+        string _animal;
         Director _parent;
         image _currentImage;
         List<Peace> _peaces = new List<Peace>();
         DraggingSpite? _spiteToDrag = null;
 
-        public GameLayer(Director parent) : base(CCColor4B.Blue)
+        public GameLayer(Director parent, string animal) : base(CCColor4B.Blue)
         {
             _parent = parent;
+            _animal = animal;
         }
 
         protected override void AddedToScene()
@@ -55,17 +57,20 @@ namespace AdygaPuzzle
             // ----------------------- Start
             _parent.LogInfo("[XML_TEST] writing xml");
             // TODO: open with content manager not with android specific staff.
-            using (var stackXml = _parent.OpenAsset("Content/Images/Animals/Cat/stack.xml"))
+            using (var stackXml = _parent.OpenAsset("Content/Images/Animals/"+_animal+"/stack.xml"))
             {
                 _currentImage = ParseHelpers.ParseXML<image>(stackXml);
             }
             _parent.LogInfo(string.Format("width = {0}, height={1} layers count={2}", _currentImage.w, _currentImage.h, _currentImage.stack.Length));
             _parent.LogInfo(string.Format("VisibleBoundsWorldspace minX={0}, MinY={1}, maxX={2}, maxY={3}", bounds.MinX, bounds.MinY, bounds.MaxX, bounds.MaxY));
             Array.Reverse(_currentImage.stack);
+            var background = new CCSprite("background.png");
+            background.Position = bounds.Center;
+            AddChild(background);
             foreach (var peace in _currentImage.stack)
             {
-                string prefix = "Cat";
-                var spite = new CCSprite("Cat/" + peace.src);
+                string prefix = _animal;
+                var spite = new CCSprite(_animal + "/" + peace.src);
                 spite.PositionX = (spite.ContentSize.Width) / 2 + peace.x;
                 spite.PositionY = _currentImage.h - peace.y - (spite.ContentSize.Height -1) / 2;
                 _parent.LogInfo(string.Format("Adding spyte {0} content size X:{1} Y:{2} W:{3} H:{4}", prefix + peace.src, spite.PositionX, spite.PositionY, spite.ContentSize.Width, spite.ContentSize.Height));
@@ -138,8 +143,7 @@ namespace AdygaPuzzle
         void Challenge()
         {
             const int MAX_CHALLENGE_COUNT = 2;
-            Random rnd = new Random(Guid.NewGuid().GetHashCode());
-            var index = rnd.Next(1, MAX_CHALLENGE_COUNT + 1);
+            var index = _parent.Rand.Next(1, MAX_CHALLENGE_COUNT + 1);
             CCAudioEngine.SharedEngine.PlayEffect(filename: string.Format("challenge{0}", index));
         }
 
@@ -152,15 +156,14 @@ namespace AdygaPuzzle
 
         void DisassemblePease(Peace p)
         {
-            var easeMove = _factory(new CCMoveTo(1, p.DisassembledPos));
+            var easeMove = new CCEaseBackOut(new CCMoveTo(1, p.DisassembledPos));
             p.Sprite.RunAction(easeMove);
         }
 
         void OnImageAssembled()
         {
             const int MAX_APPROVE_COUNT = 7;
-            Random rnd = new Random(Guid.NewGuid().GetHashCode());
-            var index = rnd.Next(1, MAX_APPROVE_COUNT + 1);
+            var index = _parent.Rand.Next(1, MAX_APPROVE_COUNT + 1);
             CCAudioEngine.SharedEngine.PlayEffect(filename: string.Format("approve{0}", index));
             ScheduleAction(()=>{
                 CCAudioEngine.SharedEngine.PlayEffect("happykids");
@@ -184,7 +187,7 @@ namespace AdygaPuzzle
         void AssemblePeace(Peace p)
         {
             CCAudioEngine.SharedEngine.PlayEffect(filename: "success_partial");
-            var easeMove = _factory(new CCMoveTo(0.3f, p.AssembledPos));
+            var easeMove = new CCEaseBackOut(new CCMoveTo(0.2f, p.AssembledPos));
             p.Sprite.RunAction(easeMove);
             StarsFireworks(p.AssembledPos);
             var grouped = _peaces.All(s => isPeaceCloseToHome(s));
@@ -255,12 +258,6 @@ namespace AdygaPuzzle
         {
             const int MIN_DISTANCE = 20;
             return CCPoint.Distance(peace.Sprite.Position, peace.AssembledPos) < MIN_DISTANCE;
-        }
-
-        EasingFactory _factory = null;
-        public void SetFactory(EasingFactory f)
-        {
-            _factory = f;
         }
     }
 }
