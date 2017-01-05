@@ -58,7 +58,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Anzor Apshev (8R7JL9MZ8E)</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\MarkerFelt-22.xnb" />
@@ -72,10 +72,118 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="Entitlements.plist" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Content\Images\Animals\background.png" />
+    <BundleResource Include="Content\Images\Animals\cock.png" />
+    <BundleResource Include="Content\Images\Animals\cow.png" />
+    <BundleResource Include="Content\Images\Animals\donkey.png" />
+    <BundleResource Include="Content\Images\Animals\duck.png" />
+    <BundleResource Include="Content\Images\Animals\goat.png" />
+    <BundleResource Include="Content\Images\Animals\goose.png" />
+    <BundleResource Include="Content\Images\Animals\lamb.png" />
+    <BundleResource Include="Content\Images\Animals\rabbit.png" />
+    <BundleResource Include="Content\Images\Animals\turkey.png" />
+    <BundleResource Include="Content\Fonts\MarkerFelt-22.xnb" />
+    <BundleResource Include="Content\Sounds\approve7.xnb" />
+    <BundleResource Include="Content\Sounds\break.xnb" />
+    <BundleResource Include="Content\Sounds\happykids.xnb" />
+    <BundleResource Include="Content\Sounds\lightapplause.xnb" />
+    <BundleResource Include="Content\Sounds\approve1.xnb" />
+    <BundleResource Include="Content\Sounds\approve2.xnb" />
+    <BundleResource Include="Content\Sounds\approve3.xnb" />
+    <BundleResource Include="Content\Sounds\approve4.xnb" />
+    <BundleResource Include="Content\Sounds\approve5.xnb" />
+    <BundleResource Include="Content\Sounds\approve6.xnb" />
+    <BundleResource Include="Content\Sounds\challenge1.xnb" />
+    <BundleResource Include="Content\Sounds\challenge2.xnb" />
+    <BundleResource Include="Content\Sounds\fail.xnb" />
+    <BundleResource Include="Content\Sounds\success_partial.xnb" />
+    <BundleResource Include="Content\Images\Animals\Cat\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\Cat\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\Cat\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\Cat\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\Cat\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\Cat\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\Cat\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\Cat\data\006.png" />
+    <BundleResource Include="Content\Images\Animals\Cat\data\007.png" />
+    <BundleResource Include="Content\Images\Animals\cock\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\cock\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\cock\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\cock\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\cock\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\cock\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\cock\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\cock\data\006.png" />
+    <BundleResource Include="Content\Images\Animals\cow\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\cow\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\cow\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\cow\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\cow\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\cow\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\cow\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\cow\data\006.png" />
+    <BundleResource Include="Content\Images\Animals\donkey\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\donkey\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\donkey\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\donkey\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\donkey\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\donkey\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\donkey\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\donkey\data\006.png" />
+    <BundleResource Include="Content\Images\Animals\goat\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\goat\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\goat\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\goat\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\goat\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\goat\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\goat\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\goat\data\006.png" />
+    <BundleResource Include="Content\Images\Animals\lamb\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\lamb\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\lamb\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\lamb\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\lamb\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\lamb\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\lamb\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\lamb\data\006.png" />
+    <BundleResource Include="Content\Images\Animals\duck\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\duck\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\duck\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\duck\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\duck\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\duck\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\duck\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\duck\data\006.png" />
+    <BundleResource Include="Content\Images\Animals\goose\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\goose\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\goose\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\goose\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\goose\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\goose\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\goose\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\goose\data\006.png" />
+    <BundleResource Include="Content\Images\Animals\rabbit\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\rabbit\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\rabbit\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\rabbit\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\rabbit\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\rabbit\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\rabbit\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\rabbit\data\006.png" />
+    <BundleResource Include="Content\Images\Animals\turkey\stack.xml" />
+    <BundleResource Include="Content\Images\Animals\turkey\data\000.png" />
+    <BundleResource Include="Content\Images\Animals\turkey\data\001.png" />
+    <BundleResource Include="Content\Images\Animals\turkey\data\002.png" />
+    <BundleResource Include="Content\Images\Animals\turkey\data\003.png" />
+    <BundleResource Include="Content\Images\Animals\turkey\data\004.png" />
+    <BundleResource Include="Content\Images\Animals\turkey\data\005.png" />
+    <BundleResource Include="Content\Images\Animals\turkey\data\006.png" />
+    <BundleResource Include="Content\Sounds\lightapplause.m4a" />
+    <Content Include="Content\Sounds\background_theme.mp3" />
+    <Content Include="Content\sparks.plist" />
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
@@ -86,7 +194,6 @@
   <ItemGroup>
     <Folder Include="Content\Images\Hd\" />
     <Folder Include="Content\Images\Ld\" />
-    <Folder Include="Content\Sounds\" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
