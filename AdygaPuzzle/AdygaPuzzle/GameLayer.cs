@@ -16,6 +16,26 @@ namespace AdygaPuzzle
             Sprite = s;
             AssembledPos = a;
         }
+        public float HalfWidth
+        {
+            get { return Sprite.BoundingBox.Size.Width / 2; }
+        }
+
+        public float HalfHeigh
+        {
+            get { return Sprite.BoundingBox.Size.Height / 2; }
+        }
+
+        public float DisassembledMaxY
+        {
+            get { return DisassembledPos.Y + HalfHeigh; }
+        }
+
+        public float DisassembledMinY
+        {
+            get { return DisassembledPos.Y - HalfHeigh; }
+        }
+
         public CCSprite Sprite { get; private set; }
         public CCPoint DisassembledPos { get; set; }
         public CCPoint AssembledPos { get; private set; }
@@ -29,6 +49,7 @@ namespace AdygaPuzzle
             StartPosition = p.Sprite.Position;
             DragStart = s;
         }
+
         public Peace Peace;
         public CCPoint StartPosition;
         public CCPoint DragStart;
@@ -41,6 +62,8 @@ namespace AdygaPuzzle
         image _currentImage;
         List<Peace> _peaces = new List<Peace>();
         DraggingSpite? _spiteToDrag = null;
+        List<CCSprite> _allSprites = new List<CCSprite>();
+        CCSprite _fullPictureSprite;
 
         public GameLayer(Director parent, string animal) : base(CCColor4B.Blue)
         {
@@ -74,6 +97,12 @@ namespace AdygaPuzzle
                 spite.PositionX = (spite.ContentSize.Width) / 2 + peace.x;
                 spite.PositionY = _currentImage.h - peace.y - (spite.ContentSize.Height -1) / 2;
                 _parent.LogInfo(string.Format("Adding spyte {0} content size X:{1} Y:{2} W:{3} H:{4}", prefix + peace.src, spite.PositionX, spite.PositionY, spite.ContentSize.Width, spite.ContentSize.Height));
+                if (peace.name == "!")
+                {
+                    _fullPictureSprite = spite;
+                    continue;
+                }
+                _allSprites.Add(spite);
                 AddChild(spite);
                 int n;
                 if (int.TryParse(peace.name, out n))
@@ -83,12 +112,21 @@ namespace AdygaPuzzle
                 }
             }
 
+            AddChild(_fullPictureSprite);
+
+            _peaces.Sort(delegate (Peace x, Peace y)
+            {
+                return x.Sprite.BoundingBox.Size.Height.CompareTo(y.Sprite.BoundingBox.Size.Height);
+            });
+
+            var viewPort = new CCRect(5, 5, bounds.Size.Width - 10, bounds.Size.Height - 10);
+
             // Calculate exploded location
-            _peaces[0].DisassembledPos = new CCPoint(100, 50);
-            _peaces[4].DisassembledPos = new CCPoint(820, 120);
-            _peaces[2].DisassembledPos = new CCPoint(100, 430);
-            _peaces[1].DisassembledPos = new CCPoint(860, 450);
-            _peaces[3].DisassembledPos = new CCPoint(100, 250);
+            _peaces[4].DisassembledPos = new CCPoint(viewPort.MaxX - _peaces[4].HalfWidth, _peaces[4].HalfHeigh + viewPort.MinY);
+            _peaces[3].DisassembledPos = new CCPoint(viewPort.MaxX - _peaces[3].HalfWidth, viewPort.MaxY - _peaces[3].HalfHeigh);
+            _peaces[2].DisassembledPos = new CCPoint(viewPort.MinX + _peaces[2].HalfWidth, viewPort.MaxY - _peaces[2].HalfHeigh);
+            _peaces[1].DisassembledPos = new CCPoint(viewPort.MinX + _peaces[1].HalfWidth, _peaces[1].HalfHeigh + viewPort.MinY);
+            _peaces[0].DisassembledPos = new CCPoint(viewPort.MinX + _peaces[0].HalfWidth, _peaces[1].DisassembledMaxY + (_peaces[2].DisassembledMinY - _peaces[1].DisassembledMaxY)/2);
 
             // --- End
 
@@ -102,6 +140,7 @@ namespace AdygaPuzzle
 
         void breakToPeaces()
         {
+            RemoveChild(_fullPictureSprite);
             CCAudioEngine.SharedEngine.PlayEffect(filename: "break");
             foreach (var p in _peaces)
             {
@@ -162,12 +201,35 @@ namespace AdygaPuzzle
 
         void OnImageAssembled()
         {
+            AddChild(_fullPictureSprite);
+            foreach(var s in _allSprites)
+            {
+                RemoveChild(s);
+            }
             const int MAX_APPROVE_COUNT = 7;
             var index = _parent.Rand.Next(1, MAX_APPROVE_COUNT + 1);
             CCAudioEngine.SharedEngine.PlayEffect(filename: string.Format("approve{0}", index));
             ScheduleAction(()=>{
                 CCAudioEngine.SharedEngine.PlayEffect("happykids");
-            },1500);
+                ScheduleAction(() =>
+                {
+                    AnimateCharacter();
+                }, 5000);
+            },1000);
+        }
+
+        void AnimateCharacter()
+        {
+            var scaleIn = new CCEaseInOut(new CCScaleBy(0.5f, 1.1f), 1.5f);
+            var scaleOut = new CCEaseInOut(new CCScaleBy(0.5f, 0.9f), 1.5f);
+
+            // create a delay that is run in between sequence events
+            var delay = new CCDelayTime(0.25f);
+
+            // create the sequence of actions, in the order we want to run them
+            var animate = new CCSequence(scaleIn, delay, scaleOut);
+
+            _fullPictureSprite.RunAction(animate);
         }
 
         void StarsFireworks(CCPoint pos)
