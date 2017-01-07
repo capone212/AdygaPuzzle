@@ -66,10 +66,9 @@ namespace AdygaPuzzle
         {
             try
             {
-                CCAudioEngine.SharedEngine.BackgroundMusicVolume = 1f;
+                CCAudioEngine.SharedEngine.BackgroundMusicVolume = 0.05f;
                 CCAudioEngine.SharedEngine.EffectsVolume = 1f;
-                CCAudioEngine.SharedEngine.PlayBackgroundMusic(filename: "background_theme.mp3", loop: true);
-                CCAudioEngine.SharedEngine.BackgroundMusicVolume = 1f;
+                CCAudioEngine.SharedEngine.PlayBackgroundMusic(filename: "background_theme", loop: true);
             }
             catch (Exception ex)
             {

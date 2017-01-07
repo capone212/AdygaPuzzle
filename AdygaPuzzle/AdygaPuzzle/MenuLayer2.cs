@@ -42,7 +42,7 @@ namespace AdygaPuzzle
         public MenuLayer(Director activity) : base(CCColor4B.Gray)
         {
             _activity = activity;
-            _animals = new List<string>(new string[] { "cock", "cow", "donkey", "duck", "goat", "goose", "lamb", "rabbit", "turkey" });
+            _animals = new List<string>(new string[] {"cat", "chicken", "cock", "cow", "dog", "donkey", "duck", "goat", "goose", "horse", "lamb", "rabbit", "turkey" });
             for(int i = 0; i < 4; i++)
             {
                 for (int j=0; j < 2; j++)
