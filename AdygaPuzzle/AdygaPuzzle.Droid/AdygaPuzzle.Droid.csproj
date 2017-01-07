@@ -82,7 +82,6 @@
     <AndroidAsset Include="Assets\Content\Sounds\approve4.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\approve5.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\approve6.xnb" />
-    <AndroidAsset Include="Assets\Content\Sounds\background_theme.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\challenge1.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\challenge2.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\fail.xnb" />
@@ -118,6 +117,7 @@
     <AndroidAsset Include="Assets\Content\Sounds\Animals\lamb.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\lion.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\bear.xnb" />
+    <AndroidAsset Include="Assets\Content\Sounds\background_theme.xnb" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -459,9 +459,6 @@
     <AndroidAsset Include="Assets\Content\Sounds\lightapplause.m4a" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\Sounds\background_theme.m4a" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\Content\sparks.plist">
       <SubType>Designer</SubType>
     </AndroidAsset>
@@ -507,6 +504,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\Images\Animals\horse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Sounds\background_theme.m4a" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

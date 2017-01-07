@@ -165,19 +165,6 @@ namespace AdygaPuzzle
                 p.Sprite.Position = p.AssembledPos;
             }
         }
-        void PlayBackgroundMusic()
-        {
-            try
-            {
-                CCAudioEngine.SharedEngine.BackgroundMusicVolume = 0.1f;
-                CCAudioEngine.SharedEngine.EffectsVolume = 1.0f;
-                CCAudioEngine.SharedEngine.PlayBackgroundMusic(filename: "background_theme", loop: true);
-            }
-            catch (Exception ex)
-            {
-                _parent.LogInfo(string.Format("[ERROR] can't play background music {0}", ex));
-            }
-        }
 
         void Challenge()
         {

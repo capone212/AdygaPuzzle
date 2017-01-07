@@ -57,7 +57,7 @@ namespace AdygaPuzzle.iOS
 
             if (gameView != null)
             {
-                var contentSearchPaths = new List<string>() { "Fonts", "Sounds", "Images/Animals" };
+                var contentSearchPaths = new List<string>() { "Fonts", "Sounds", "Sounds/Animals", "Images/Animals" };
                 CCSizeI viewSize = gameView.ViewSize;
 
                 int width = 960;
