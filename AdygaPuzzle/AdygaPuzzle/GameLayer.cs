@@ -218,18 +218,29 @@ namespace AdygaPuzzle
             },1000);
         }
 
+        DateTime? _lastCharacterAnimated = null;
+
         void AnimateCharacter()
         {
+            _lastCharacterAnimated = DateTime.Now;
             var scaleIn = new CCEaseInOut(new CCScaleBy(0.5f, 1.1f), 1.5f);
             var scaleOut = new CCEaseInOut(new CCScaleBy(0.5f, 0.9f), 1.5f);
-
             // create a delay that is run in between sequence events
             var delay = new CCDelayTime(0.25f);
-
             // create the sequence of actions, in the order we want to run them
             var animate = new CCSequence(scaleIn, delay, scaleOut);
-
             _fullPictureSprite.RunAction(animate);
+            CCAudioEngine.SharedEngine.PlayEffect(filename: _animal);
+        }
+
+        void HandleCharacterTouch()
+        {
+            if (!_lastCharacterAnimated.HasValue)
+                return;
+            var diff = DateTime.Now - _lastCharacterAnimated.Value;
+            if (diff.TotalSeconds < 2)
+                return;
+            AnimateCharacter();
         }
 
         void StarsFireworks(CCPoint pos)
@@ -263,6 +274,7 @@ namespace AdygaPuzzle
         {
             if (touches.Count > 0)
             {
+                var touch = touches[0];
                 if (_spiteToDrag.HasValue)
                 {
                     if (!isPeaceCloseToHome(_spiteToDrag.Value.Peace))
@@ -272,6 +284,11 @@ namespace AdygaPuzzle
                     }
                     _spiteToDrag = null;
                 }
+                else if (isTouchingPeace(touch, _fullPictureSprite))
+                {
+                    HandleCharacterTouch();
+                }
+
             }
         }
 
