@@ -25,7 +25,6 @@ namespace AdygaPuzzle.Droid
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
     public class MainActivity : Activity, IMainActivity
     {
-        int count = 1;
         Director _director;
 
         public void LogInfo(string line)

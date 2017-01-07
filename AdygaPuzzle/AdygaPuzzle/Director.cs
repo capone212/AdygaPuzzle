@@ -43,13 +43,19 @@ namespace AdygaPuzzle
 
             if (_gameLayer != null)
                 _gameLayer.Dispose();
-            
-            _gameScene = new CCScene(_gameView);
-            _gameLayer = new GameLayer(this, animal);
-            _gameScene.AddLayer(_gameLayer);
-            _gameScene.AddLayer(new MenuLayer2(this));
-            _gameLayer.StartGame();
-            _gameView.RunWithScene(_gameScene);
+            try
+            {
+                _gameScene = new CCScene(_gameView);
+                _gameLayer = new GameLayer(this, animal);
+                _gameScene.AddLayer(_gameLayer);
+                _gameScene.AddLayer(new MenuLayer2(this));
+                _gameLayer.StartGame();
+                _gameView.RunWithScene(_gameScene);
+            }
+            catch (Exception ex)
+            {
+                _parent.LogInfo(string.Format("Error starting game! {0}", ex));
+            }
         }
 
         public void RunMenu()
