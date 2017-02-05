@@ -2124,3 +2124,9 @@
 /processorParam:Quality=Best
 /build:Sounds/uvizhev-anzor-a.mp3
 
+#begin Sounds/balloon_pop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/balloon_pop.wav
+

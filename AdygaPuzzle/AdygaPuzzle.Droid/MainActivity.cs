@@ -56,7 +56,7 @@ namespace AdygaPuzzle.Droid
 
             if (gameView != null)
             {
-                var contentSearchPaths = new List<string>() { "Fonts", "Sounds", "Sounds/Animals", "Images/Animals" };
+                var contentSearchPaths = new List<string>() { "Fonts", "Sounds", "Sounds/Animals", "Images/Animals", "Images/Ballons" };
                 CCSizeI viewSize = gameView.ViewSize;
 
                 int width = 960;

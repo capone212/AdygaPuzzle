@@ -31,6 +31,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="PopBullons.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="GameLayer.cs" />
     <Compile Include="MenuLayer.cs" />

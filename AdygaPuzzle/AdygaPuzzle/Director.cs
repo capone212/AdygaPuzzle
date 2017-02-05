@@ -46,10 +46,12 @@ namespace AdygaPuzzle
             try
             {
                 _gameScene = new CCScene(_gameView);
-                _gameLayer = new GameLayer(this, animal);
-                _gameScene.AddLayer(_gameLayer);
+                //_gameLayer = new GameLayer(this, animal);
+               //_gameScene.AddLayer(_gameLayer);
                 _gameScene.AddLayer(new MenuLayer2(this));
-                _gameLayer.StartGame();
+                _gameScene.AddLayer(new PopBalloon(this));
+
+                //_gameLayer.StartGame();
                 _gameView.RunWithScene(_gameScene);
             }
             catch (Exception ex)
