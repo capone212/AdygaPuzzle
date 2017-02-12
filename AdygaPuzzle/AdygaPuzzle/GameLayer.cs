@@ -64,6 +64,7 @@ namespace AdygaPuzzle
         DraggingSpite? _spiteToDrag = null;
         List<CCSprite> _allSprites = new List<CCSprite>();
         CCSprite _fullPictureSprite;
+        PopBalloon _baloonLayer = null;
 
         public GameLayer(Director parent, string animal) : base(CCColor4B.Blue)
         {
@@ -173,8 +174,9 @@ namespace AdygaPuzzle
             CCAudioEngine.SharedEngine.PlayEffect(filename: string.Format("challenge{0}", index));
         }
 
-        public void StartGame()
+        public void StartGame(PopBalloon layer)
         {
+            _baloonLayer = layer;
             Assemble();
             ScheduleBreak();
             Challenge();
@@ -198,10 +200,8 @@ namespace AdygaPuzzle
             CCAudioEngine.SharedEngine.PlayEffect(filename: string.Format("approve{0}", index));
             ScheduleAction(()=>{
                 CCAudioEngine.SharedEngine.PlayEffect("happykids");
-                ScheduleAction(() =>
-                {
-                    AnimateCharacter();
-                }, 5000);
+                ScheduleAction(() => { StartPopBaloons(); }, 100);
+                ScheduleAction(() => { AnimateCharacter(); }, 10000);
             },1000);
         }
 
@@ -324,6 +324,26 @@ namespace AdygaPuzzle
         {
             const int MIN_DISTANCE = 20;
             return CCPoint.Distance(peace.Sprite.Position, peace.AssembledPos) < MIN_DISTANCE;
+        }
+
+        public void StartPopBaloons()
+        {
+            var layer = _baloonLayer;
+            if (layer == null)
+                return;
+            try
+            {
+                layer.StartBaloons();
+                ScheduleAction(() =>
+                {
+                    layer.RemoveFromParent();
+                    layer.Dispose();
+                }, 10000);
+            }
+            catch(Exception ex)
+            {
+                _parent.LogInfo(string.Format("[ERROR] Cant add baloon layer {0}", ex));
+            }
         }
     }
 }

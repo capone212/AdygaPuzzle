@@ -48,26 +48,26 @@ namespace AdygaPuzzle
             _activity = director;
         }
 
-
         protected override void AddedToScene()
         {
             base.AddedToScene();
             try
             {
-                StartBalloons();
+                LoadBalloons();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _activity.LogInfo("PopBalloon::AddedToScene error: " + ex.ToString());
             }
-        }
+    }
 
-        void StartBalloons()
+        void LoadBalloons()
         {
             const int MAX_BALLON_SHELL = 7;
             const int MAX_BALLON_SYMBOL = 15;
+            const int BALOONS_COUNT = 50;
             var bounds = VisibleBoundsWorldspace;
-            for(int i = 0; i < 30; ++i)
+            for(int i = 0; i < BALOONS_COUNT; ++i)
             {
                 var entry = new MoovingBalloon();
                 entry.balloon = new CCSprite("Ex/" + (i % MAX_BALLON_SHELL + 1).ToString() + ".png");
@@ -78,10 +78,9 @@ namespace AdygaPuzzle
                 entry.node.AddChild(entry.symbol);
                 entry.node.PositionX =  _activity.Rand.Next(50, (int)bounds.MaxX - 50);
                 entry.node.PositionY = -1 * _activity.Rand.Next(200, 300);
-                entry.node.Scale = _activity.Rand.Next(5, 7) * 0.1f;
+                entry.node.Scale = _activity.Rand.Next(5, 8) * 0.1f;
                 AddChild(entry.node);
-                var easeMove = new CCEaseElastic(new CCMoveTo(_activity.Rand.Next(5,15), new CCPoint(entry.node.PositionX, 700)));
-                entry.node.RunAction(easeMove);
+
                 _moovings.Add(entry);
             }
 
@@ -90,6 +89,15 @@ namespace AdygaPuzzle
             //touchListener.OnTouchesMoved = OnTouches;
             touchListener.OnTouchesBegan = OnTouches;
             AddEventListener(touchListener, this);
+        }
+
+        public void StartBaloons()
+        {
+            foreach (var entry in _moovings)
+            {
+                var easeMove = new CCEaseElastic(new CCMoveTo(_activity.Rand.Next(3, 12), new CCPoint(entry.node.PositionX, 700)));
+                entry.node.RunAction(easeMove);
+            }
         }
 
         void OnTouches(List<CCTouch> touches, CCEvent touchEvent)
