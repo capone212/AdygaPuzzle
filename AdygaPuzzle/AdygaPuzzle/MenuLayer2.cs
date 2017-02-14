@@ -33,27 +33,113 @@ namespace AdygaPuzzle
     public class MenuLayer : CCLayerColor
     {
         Director _activity;
-        //"cock", "cow", "donkey", "duck", "goat", "goose", "lamb", "rabbit", "turkey"
         List<string> _animals;
         List<CCPoint> _menuPositions = new List<CCPoint>();
 
         Dictionary<string, CCSprite> _sprites = new Dictionary<string, CCSprite>();
+        CCSprite _menuLeft;
+        CCSprite _menuRight;
+        List<CCSprite> _pageBalls = new List<CCSprite>();
+        int _currentPage = 0;
 
         public MenuLayer(Director activity) : base(CCColor4B.Gray)
         {
             _activity = activity;
             _animals = new List<string>(new string[] {"cat", "chicken", "cock", "cow", "dog", "donkey", "duck", "goat", "goose", "horse", "lamb", "rabbit", "turkey" });
+            
             for(int i = 0; i < 4; i++)
             {
                 for (int j=0; j < 2; j++)
                 {
-                    var x = 100 + i * 200 + 75;
-                    var y = 540 - 150 - j * 140 - 50;
+                    var x = 150 + i * 230;
+                    var y = 540 - 130 - j * 180 - 50;
                     _menuPositions.Add(new CCPoint(x, y));
                 }
             }
         }
 
+
+        void buildMenu()
+        {
+            _menuLeft = new CCSprite("left");
+            _menuRight = new CCSprite("right");
+            var menuY = _menuLeft.ContentSize.Height / 2 + 20;
+            int pagesCount = (_animals.Count - 1) / _menuPositions.Count + 1;
+            for (int i = 0; i < pagesCount; ++i)
+            {
+                _pageBalls.Add(new CCSprite("ball"));
+            }
+            const int MENU_GAP = 20;
+            var ballsTotallWidth = pagesCount * _pageBalls.First().ContentSize.Width + MENU_GAP * (pagesCount - 1);
+            var transformX = VisibleBoundsWorldspace.Size.Width / 2 - ballsTotallWidth / 2;
+            for (int i = 0; i < pagesCount; ++i)
+            {
+                var spr = _pageBalls[i];
+                spr.PositionY = menuY;
+                spr.PositionX = transformX + (spr.ContentSize.Width + MENU_GAP) * i ;
+                AddChild(spr);
+            }
+
+            _menuLeft.PositionX = _pageBalls.First().PositionX - MENU_GAP - _pageBalls.First().ContentSize.Width / 2 - _menuLeft.ContentSize.Width / 2;
+            _menuLeft.PositionY = menuY;
+            _menuRight.PositionX = _pageBalls.Last().PositionX + MENU_GAP  + _pageBalls.Last().ContentSize.Width / 2 + _menuRight.ContentSize.Width / 2;
+            _menuRight.PositionY = menuY;
+            AddChild(_menuRight);
+            AddChild(_menuLeft);
+        }
+
+        void RefreshControls()
+        {
+            for (int i = 0; i < _pageBalls.Count; ++i)
+            {
+                _pageBalls[i].Color = i != _currentPage ? CCColor3B.DarkGray : CCColor3B.White;
+            }
+            _menuLeft.Color = _currentPage == 0 ? CCColor3B.Gray : CCColor3B.White;
+            _menuRight.Color = _currentPage == _pageBalls.Count - 1 ? CCColor3B.DarkGray : CCColor3B.White;
+        }
+
+        void OnPageChanged()
+        {
+            foreach(var s in _sprites)
+            {
+                RemoveChild(s.Value);
+            }
+            FillAnimals();
+            RefreshControls();
+        }
+
+        void NextPage()
+        {
+            if (_currentPage >= _pageBalls.Count - 1)
+                return;
+            _currentPage++;
+            OnPageChanged();
+        }
+
+        void PrevPage()
+        {
+            if (_currentPage == 0)
+                return;
+            _currentPage--;
+            OnPageChanged();
+        }
+
+        void FillAnimals()
+        {
+            _sprites.Clear();
+            for (int i = 0; i < _menuPositions.Count; ++i)
+            {
+                var position = _menuPositions.Count * _currentPage + i;
+                if (position >= _animals.Count)
+                    break;
+                var name = _animals[position];
+                var sprite = new CCSprite(name + ".png");
+                sprite.Position = _menuPositions[i];
+                _sprites[name] = sprite;
+                _activity.LogInfo(string.Format("Drawing sprite {0} position x={1} y={2} ", _animals[position], sprite.PositionX, sprite.PositionY));
+                AddChild(sprite);
+            }
+        }
 
         protected override void AddedToScene()
         {
@@ -61,28 +147,34 @@ namespace AdygaPuzzle
             try
             {
                 _sprites.Clear();
-                for (int i = 0; i < _menuPositions.Count; ++i)
-                {
-                    var position = i;
-                    if (position >= _animals.Count)
-                        break;
-                    var name = _animals[position];
-                    var sprite = new CCSprite(name + ".png");
-                    sprite.Position = _menuPositions[i];
-                    _sprites[name] = sprite;
-                    _activity.LogInfo(string.Format("Drawing sprite {0} position x={1} y={2} ", _animals[position], sprite.PositionX, sprite.PositionY));
-                    AddChild(sprite);
-                }
+                // TODO: customize
+                var bounds = VisibleBoundsWorldspace;
+                var background = new CCSprite("home_background_menu");
+                background.Position = bounds.Center;
+                AddChild(background);
+
+                // TODO: customize home_
+                var caption = new CCSprite("home_menu_caption");
+                caption.PositionX = bounds.Center.X;
+                caption.PositionY = bounds.MaxY - 30 - caption.ContentSize.Height / 2;
+                AddChild(caption);
+
+                buildMenu();
+                OnPageChanged();
 
                 var touchListener = new CCEventListenerTouchAllAtOnce();
                 touchListener.OnTouchesBegan = OnTouchesBegan;
+                touchListener.OnTouchesEnded = OnTouchesEnd;
                 AddEventListener(touchListener, this);
+
             }
             catch (Exception ex)
             {
                 _activity.LogInfo(string.Format("Error adding to scene {0}", ex));
             }
         }
+
+        //float dragPosition = 0;
 
         void OnTouchesBegan(List<CCTouch> touches, CCEvent touchEvent)
         {
@@ -93,10 +185,43 @@ namespace AdygaPuzzle
                 if (isTouchingPeace(touch, p.Value))
                 {
                     _activity.RunGame(p.Key);
+                    return;
                 }
             }
 
+            if (isTouchingPeace(touch, _menuLeft))
+            {
+                PrevPage();
+                return;
+            }
+
+            if (isTouchingPeace(touch, _menuRight))
+            {
+                NextPage();
+                return;
+            }
         }
+
+        void OnTouchesEnd(List<CCTouch> touches, CCEvent touchEvent)
+        {
+            // We only care about the first touch:
+            var touch = touches[0];
+            var diff = touch.Location.X - touch.StartLocation.X;
+            const int MIN_DRAG_WIDTH = 100;
+            if (diff > MIN_DRAG_WIDTH)
+            {
+                PrevPage();
+                return;
+            }
+
+            if (diff < -1 * MIN_DRAG_WIDTH)
+            {
+                NextPage();
+                return;
+            }
+        }
+
+
         bool isTouchingPeace(CCTouch touch, CCSprite peace)
         {
             // This includes the rectangular white space around our sprite

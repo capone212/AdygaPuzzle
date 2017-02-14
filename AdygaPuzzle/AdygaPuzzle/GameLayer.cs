@@ -103,13 +103,17 @@ namespace AdygaPuzzle
                     _fullPictureSprite = spite;
                     continue;
                 }
-                _allSprites.Add(spite);
                 AddChild(spite);
                 int n;
                 if (int.TryParse(peace.name, out n))
                 {
                     _parent.LogInfo(string.Format("Save movable spite with name {0}", peace.name));
                     _peaces.Add(new Peace(spite,  spite.Position));
+                    _allSprites.Add(spite);
+                }
+                else if (peace.name == "background")
+                {
+                    _allSprites.Add(spite);
                 }
             }
 
@@ -120,7 +124,9 @@ namespace AdygaPuzzle
                 return x.Sprite.BoundingBox.Size.Height.CompareTo(y.Sprite.BoundingBox.Size.Height);
             });
 
-            var viewPort = new CCRect(5, 5, bounds.Size.Width - 10, bounds.Size.Height - 10);
+            const int XGAP = 50;
+            const int YGAP = 20;
+            var viewPort = new CCRect(XGAP, YGAP, bounds.Size.Width - 2 * XGAP, bounds.Size.Height - 2 * YGAP);
 
             // Calculate exploded location
             _peaces[4].DisassembledPos = new CCPoint(viewPort.MaxX - _peaces[4].HalfWidth, _peaces[4].HalfHeigh + viewPort.MinY);
@@ -156,7 +162,7 @@ namespace AdygaPuzzle
 
         void ScheduleBreak()
         {
-            ScheduleAction(breakToPeaces, 3000);
+            ScheduleAction(breakToPeaces, 1000);
         }
 
         void Assemble()
@@ -170,8 +176,11 @@ namespace AdygaPuzzle
         void Challenge()
         {
             const int MAX_CHALLENGE_COUNT = 2;
-            var index = _parent.Rand.Next(1, MAX_CHALLENGE_COUNT + 1);
-            CCAudioEngine.SharedEngine.PlayEffect(filename: string.Format("challenge{0}", index));
+            var index = _parent.Rand.Next(1, 11);
+            if (index <= MAX_CHALLENGE_COUNT)
+            {
+                CCAudioEngine.SharedEngine.PlayEffect(filename: string.Format("challenge{0}", index));
+            }
         }
 
         public void StartGame(PopBalloon layer)
