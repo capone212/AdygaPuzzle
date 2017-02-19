@@ -84,7 +84,7 @@ namespace AdygaPuzzle.Droid
 
                 // Construct game scene
                 _director = new Director(this, gameView);
-                _director.RunMenu();
+                _director.RunTopMenu();
             }
         }
     }

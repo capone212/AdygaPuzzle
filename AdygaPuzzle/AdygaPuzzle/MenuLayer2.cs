@@ -39,19 +39,34 @@ namespace AdygaPuzzle
         Dictionary<string, CCSprite> _sprites = new Dictionary<string, CCSprite>();
         CCSprite _menuLeft;
         CCSprite _menuRight;
+        CCSprite _toTopmenu;
         List<CCSprite> _pageBalls = new List<CCSprite>();
         int _currentPage = 0;
 
-        public MenuLayer(Director activity) : base(CCColor4B.Gray)
+        static List<string> getAnimalsByType(string type)
+        {
+            if (type == "home")
+            {
+                return new List<string>(new string[] { "cat", "chicken", "cock", "cow", "dog", "donkey", "duck", "goat", "goose", "horse", "lamb", "rabbit", "turkey" });
+            }
+            else if (type == "wild")
+            {
+                return new List<string>(new string[] { "bear", "camel", "deer", "elephant", "fox", "hedgehog", "lion", "squirrel", "tiger", "wolf" });
+            }
+
+            // birds
+            return new List<string>(new string[] { "dyatel", "golub", "lastochka", "lebed", "sinica", "snegir", "soroka", "sova", "vorobey", "vorona", "orel" });
+        }
+
+        public MenuLayer(Director activity, string type) : base(CCColor4B.Gray)
         {
             _activity = activity;
+            Type = type;
 
-            //_animals = new List<string>(new string[] {"cat", "chicken", "cock", "cow", "dog", "donkey", "duck", "goat", "goose", "horse", "lamb", "rabbit", "turkey" });
-            //_animals = new List<string>(new string[] { "bear", "camel", "deer", "elephant", "fox", "hedgehog", "lion", "squirrel", "tiger", "wolf" });
-            _animals = new List<string>(new string[] { "dyatel", "golub", "lastochka", "lebed", "sinica", "snegir", "soroka", "sova", "vorobey", "vorona", "orel" });
+            _animals = getAnimalsByType(type);
             for (int i = 0; i < 4; i++)
             {
-                for (int j=0; j < 2; j++)
+                for (int j = 0; j < 2; j++)
                 {
                     var x = 150 + i * 230;
                     var y = 540 - 130 - j * 180 - 50;
@@ -60,12 +75,21 @@ namespace AdygaPuzzle
             }
         }
 
+        public string Type { get; set; }
 
         void buildMenu()
         {
             _menuLeft = new CCSprite("left");
             _menuRight = new CCSprite("right");
             var menuY = _menuLeft.ContentSize.Height / 2 + 20;
+
+            if (_toTopmenu == null)
+            {
+                _toTopmenu = new CCSprite("back");
+                _toTopmenu.Position = new CCPoint(50, menuY);
+                AddChild(_toTopmenu);
+            }
+
             int pagesCount = (_animals.Count - 1) / _menuPositions.Count + 1;
             for (int i = 0; i < pagesCount; ++i)
             {
@@ -186,7 +210,7 @@ namespace AdygaPuzzle
             {
                 if (isTouchingPeace(touch, p.Value))
                 {
-                    _activity.RunGame(p.Key);
+                    _activity.RunGame(Type, p.Key);
                     return;
                 }
             }
@@ -202,6 +226,13 @@ namespace AdygaPuzzle
                 NextPage();
                 return;
             }
+
+            if (isTouchingPeace(touch, _toTopmenu))
+            {
+                _activity.RunTopMenu();
+                return;
+            }
+            
         }
 
         void OnTouchesEnd(List<CCTouch> touches, CCEvent touchEvent)
@@ -209,7 +240,7 @@ namespace AdygaPuzzle
             // We only care about the first touch:
             var touch = touches[0];
             var diff = touch.Location.X - touch.StartLocation.X;
-            const int MIN_DRAG_WIDTH = 100;
+            const int MIN_DRAG_WIDTH = 50;
             if (diff > MIN_DRAG_WIDTH)
             {
                 PrevPage();

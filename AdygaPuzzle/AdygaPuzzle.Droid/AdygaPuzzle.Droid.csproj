@@ -674,6 +674,15 @@
     <AndroidAsset Include="Assets\Content\Images\Animals\vorona\data\006.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\005.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidAsset Include="Assets\Content\Sounds\lightapplause.m4a" />
   </ItemGroup>
   <ItemGroup>
@@ -881,6 +890,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\Images\Animals\vorona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

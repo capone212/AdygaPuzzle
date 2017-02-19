@@ -64,11 +64,14 @@ namespace AdygaPuzzle
         DraggingSpite? _spiteToDrag = null;
         List<CCSprite> _allSprites = new List<CCSprite>();
         CCSprite _fullPictureSprite;
+        CCSprite _toMenu;
         PopBalloon _baloonLayer = null;
+        string _animalType;
 
-        public GameLayer(Director parent, string animal) : base(CCColor4B.Blue)
+        public GameLayer(Director parent, string type, string animal) : base(CCColor4B.Blue)
         {
             _parent = parent;
+            _animalType = type;
             _animal = animal;
         }
 
@@ -98,6 +101,11 @@ namespace AdygaPuzzle
             var background = new CCSprite("background.png");
             background.Position = bounds.Center;
             AddChild(background);
+
+            _toMenu = new CCSprite("back");
+            _toMenu.Position = new CCPoint(bounds.Center.X, 50);
+            AddChild(_toMenu);
+
             foreach (var peace in _currentImage.stack)
             {
                 string prefix = _animal;
@@ -313,9 +321,15 @@ namespace AdygaPuzzle
                 if (isTouchingPeace(touch, p.Sprite) && !isPeaceAtHome(p))
                 {
                     _spiteToDrag = new DraggingSpite(p, touch.Location);
+                    return;
                 }
             }
 
+            if (isTouchingPeace(touch, _toMenu))
+            {
+                _parent.RunMenu(_animalType);
+                return;
+            }
         }
 
         void OnTouchesMoved(System.Collections.Generic.List<CCTouch> touches, CCEvent touchEvent)

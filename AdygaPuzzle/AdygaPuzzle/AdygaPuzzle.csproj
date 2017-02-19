@@ -34,11 +34,11 @@
     <Compile Include="PopBullons.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="GameLayer.cs" />
-    <Compile Include="MenuLayer.cs" />
     <Compile Include="MenuLayer2.cs" />
     <Compile Include="OraMetaParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timer.cs" />
+    <Compile Include="TopMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="box2d, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">

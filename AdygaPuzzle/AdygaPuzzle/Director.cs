@@ -27,6 +27,7 @@ namespace AdygaPuzzle
         {
             _parent = parent;
             _gameView = gameView;
+            _menuScene = new CCScene(_gameView);
             Rand = new Random(Guid.NewGuid().GetHashCode());
             PlayBackgroundMusic();
         }
@@ -36,7 +37,7 @@ namespace AdygaPuzzle
             get; private set;
         }
 
-        public void RunGame(string animal)
+        public void RunGame(string type, string animal)
         {
             if (_gameScene != null)
                 _gameScene.Dispose();
@@ -46,9 +47,8 @@ namespace AdygaPuzzle
             try
             {
                 _gameScene = new CCScene(_gameView);
-                _gameLayer = new GameLayer(this, animal);
+                _gameLayer = new GameLayer(this, type, animal);
                 _gameScene.AddLayer(_gameLayer);
-                _gameScene.AddLayer(new MenuLayer2(this));
                 var balloonLayer = new PopBalloon(this);
                 _gameScene.AddLayer(balloonLayer);
                 _gameLayer.StartGame(balloonLayer);
@@ -60,14 +60,33 @@ namespace AdygaPuzzle
             }
         }
 
-        public void RunMenu()
+        MenuLayer _menuLayer;
+
+        public void RunMenu(string type)
         {
-            if (_menuScene == null)
+            if (_menuLayer == null || _menuLayer.Type != type)
             {
-                _menuScene = new CCScene(_gameView);
-                _menuScene.AddLayer(new MenuLayer(this));
+                if (_menuLayer != null)
+                {
+                    _menuLayer.RemoveFromParent();
+                    _menuLayer.Dispose();
+                }
+                _menuLayer = new MenuLayer(this, type);
+                _menuScene.AddLayer(_menuLayer);
             }
             _gameView.RunWithScene(_menuScene);
+        }
+
+        CCScene _topMenuScene = null;
+
+        public void RunTopMenu()
+        {
+            if (_topMenuScene == null)
+            {
+                _topMenuScene = new CCScene(_gameView);
+                _topMenuScene.AddLayer(new TopMenu(this));
+            }
+            _gameView.RunWithScene(_topMenuScene);
         }
 
         void PlayBackgroundMusic()
