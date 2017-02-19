@@ -103,7 +103,7 @@ namespace AdygaPuzzle
             AddChild(background);
 
             _toMenu = new CCSprite("back");
-            _toMenu.Position = new CCPoint(bounds.Center.X, 50);
+            _toMenu.Position = new CCPoint(bounds.Center.X, 40);
             AddChild(_toMenu);
 
             foreach (var peace in _currentImage.stack)
@@ -377,7 +377,7 @@ namespace AdygaPuzzle
                 {
                     layer.RemoveFromParent();
                     layer.Dispose();
-                }, 10000);
+                }, 8 * 1000);
             }
             catch(Exception ex)
             {

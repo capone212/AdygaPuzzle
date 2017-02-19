@@ -95,7 +95,7 @@ namespace AdygaPuzzle
         {
             foreach (var entry in _moovings)
             {
-                var easeMove = new CCEaseElastic(new CCMoveTo(_activity.Rand.Next(3, 12), new CCPoint(entry.node.PositionX, 700)));
+                var easeMove = new CCEaseElastic(new CCMoveTo(_activity.Rand.Next(3, 10), new CCPoint(entry.node.PositionX, 700)));
                 entry.node.RunAction(easeMove);
             }
         }
