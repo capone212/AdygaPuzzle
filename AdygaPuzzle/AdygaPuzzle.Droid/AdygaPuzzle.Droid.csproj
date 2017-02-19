@@ -557,6 +557,116 @@
     <AndroidAsset Include="Assets\Content\Images\Animals\wolf\data\006.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\dyatel\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\dyatel\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\dyatel\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\dyatel\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\dyatel\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\dyatel\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\dyatel\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\dyatel\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\golub\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\golub\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\golub\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\golub\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\golub\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\golub\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\golub\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\golub\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\lastochka\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lastochka\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lastochka\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lastochka\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lastochka\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lastochka\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lastochka\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lastochka\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\lebed\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lebed\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lebed\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lebed\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lebed\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lebed\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lebed\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lebed\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\orel\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\orel\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\orel\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\orel\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\orel\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\orel\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\orel\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\orel\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\sinica\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sinica\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sinica\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sinica\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sinica\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sinica\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sinica\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sinica\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\snegir\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\snegir\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\snegir\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\snegir\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\snegir\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\snegir\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\snegir\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\snegir\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\soroka\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\soroka\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\soroka\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\soroka\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\soroka\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\soroka\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\soroka\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\soroka\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\sova\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sova\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sova\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sova\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sova\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sova\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sova\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\sova\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorobey\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorobey\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorobey\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorobey\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorobey\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorobey\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorobey\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorobey\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorona\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorona\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorona\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorona\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorona\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorona\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorona\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorona\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidAsset Include="Assets\Content\Sounds\lightapplause.m4a" />
   </ItemGroup>
   <ItemGroup>
@@ -725,6 +835,45 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\Images\Animals\wolf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\dyatel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\golub.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\lastochka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\lebed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\menu_caption_birds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\menu_caption_wild.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\orel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\sinica.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\snegir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\soroka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\sova.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorobey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\vorona.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

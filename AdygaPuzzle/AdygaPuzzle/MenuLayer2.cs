@@ -46,8 +46,9 @@ namespace AdygaPuzzle
         {
             _activity = activity;
 
-           //_animals = new List<string>(new string[] {"cat", "chicken", "cock", "cow", "dog", "donkey", "duck", "goat", "goose", "horse", "lamb", "rabbit", "turkey" });
-            _animals = new List<string>(new string[] { "bear", "camel", "deer", "elephant", "fox", "hedgehog", "lion", "squirrel", "tiger", "wolf" });
+            //_animals = new List<string>(new string[] {"cat", "chicken", "cock", "cow", "dog", "donkey", "duck", "goat", "goose", "horse", "lamb", "rabbit", "turkey" });
+            //_animals = new List<string>(new string[] { "bear", "camel", "deer", "elephant", "fox", "hedgehog", "lion", "squirrel", "tiger", "wolf" });
+            _animals = new List<string>(new string[] { "dyatel", "golub", "lastochka", "lebed", "sinica", "snegir", "soroka", "sova", "vorobey", "vorona", "orel" });
             for (int i = 0; i < 4; i++)
             {
                 for (int j=0; j < 2; j++)
