@@ -234,7 +234,7 @@ namespace AdygaPuzzle
             ScheduleAction(()=>{
                 CCAudioEngine.SharedEngine.PlayEffect("happykids");
                 ScheduleAction(() => { StartPopBaloons(); }, 100);
-                ScheduleAction(() => { AnimateCharacter(); }, 10000);
+                ScheduleAction(() => { AnimateCharacter(); }, 8  * 1000);
             },1000);
         }
 
