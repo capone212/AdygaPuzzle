@@ -2172,3 +2172,14 @@
 /processorParam:Quality=Best
 /build:Sounds/Animals/vorobey.wav
 
+#begin Fonts/MarkerFelt-22.xnb
+/importer:
+/processor:
+/build:Fonts/MarkerFelt-22.xnb
+
+#begin Fonts/Gagalin-36.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Gagalin-36.spritefont
+

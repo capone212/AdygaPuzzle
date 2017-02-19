@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2008-2009 Jason Booth
 Copyright (c) 2011-2012 openxlive.com
@@ -42,20 +42,26 @@ namespace AdygaPuzzle
         CCSprite _toTopmenu;
         List<CCSprite> _pageBalls = new List<CCSprite>();
         int _currentPage = 0;
+        string _displayName;
 
-        static List<string> getAnimalsByType(string type)
+        void initByType(string type)
         {
             if (type == "home")
             {
-                return new List<string>(new string[] { "cat", "chicken", "cock", "cow", "dog", "donkey", "duck", "goat", "goose", "horse", "lamb", "rabbit", "turkey" });
+                _animals = new List<string>(new string[] { "cat", "chicken", "cock", "cow", "dog", "donkey", "duck", "goat", "goose", "horse", "lamb", "rabbit", "turkey" });
+                _displayName = "УНАГЪУЭ ПСЭУЩХЬЭХЭР";
+                return;
             }
             else if (type == "wild")
             {
-                return new List<string>(new string[] { "bear", "camel", "deer", "elephant", "fox", "hedgehog", "lion", "squirrel", "tiger", "wolf" });
+                _animals = new List<string>(new string[] { "bear", "camel", "deer", "elephant", "fox", "hedgehog", "lion", "squirrel", "tiger", "wolf" });
+                _displayName = "ХЬЭКIЭКХЪУЭКIЭХЭР";
+                return;
             }
 
             // birds
-            return new List<string>(new string[] { "dyatel", "golub", "lastochka", "lebed", "sinica", "snegir", "soroka", "sova", "vorobey", "vorona", "orel" });
+            _animals = new List<string>(new string[] { "dyatel", "golub", "lastochka", "lebed", "sinica", "snegir", "soroka", "sova", "vorobey", "vorona", "orel" });
+            _displayName = "КЪУАЛЭ БЗУХЭР";
         }
 
         public MenuLayer(Director activity, string type) : base(CCColor4B.Gray)
@@ -63,7 +69,7 @@ namespace AdygaPuzzle
             _activity = activity;
             Type = type;
 
-            _animals = getAnimalsByType(type);
+            initByType(type);
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 2; j++)
@@ -180,9 +186,10 @@ namespace AdygaPuzzle
                 AddChild(background);
 
                 // TODO: customize home_
-                var caption = new CCSprite("home_menu_caption");
+                var caption = new CCLabel(_displayName, "Gagalin-36", 36, CCLabelFormat.SpriteFont);
                 caption.PositionX = bounds.Center.X;
                 caption.PositionY = bounds.MaxY - 30 - caption.ContentSize.Height / 2;
+                caption.Color = CCColor3B.Black;
                 AddChild(caption);
 
                 buildMenu();
