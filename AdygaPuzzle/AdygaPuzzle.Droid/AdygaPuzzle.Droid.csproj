@@ -457,6 +457,106 @@
     <AndroidAsset Include="Assets\Content\Images\Animals\horse\data\006.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\bear\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\bear\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\bear\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\bear\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\bear\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\bear\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\bear\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\bear\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\camel\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\camel\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\camel\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\camel\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\camel\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\camel\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\camel\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\camel\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\deer\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\deer\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\deer\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\deer\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\deer\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\deer\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\deer\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\deer\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\elephant\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\elephant\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\elephant\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\elephant\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\elephant\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\elephant\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\elephant\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\elephant\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\fox\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\fox\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\fox\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\fox\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\fox\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\fox\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\fox\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\fox\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\hedgehog\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\hedgehog\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\hedgehog\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\hedgehog\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\hedgehog\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\hedgehog\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\hedgehog\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\hedgehog\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\lion\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lion\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lion\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lion\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lion\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lion\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lion\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\lion\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\squirrel\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\squirrel\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\squirrel\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\squirrel\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\squirrel\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\squirrel\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\squirrel\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\squirrel\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\tiger\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\tiger\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\tiger\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\tiger\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\tiger\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\tiger\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\tiger\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\tiger\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\wolf\stack.xml" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\wolf\data\000.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\wolf\data\001.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\wolf\data\002.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\wolf\data\003.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\wolf\data\004.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\wolf\data\005.png" />
+    <AndroidAsset Include="Assets\Content\Images\Animals\wolf\data\006.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidAsset Include="Assets\Content\Sounds\lightapplause.m4a" />
   </ItemGroup>
   <ItemGroup>
@@ -592,6 +692,39 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\Images\Animals\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\bear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\camel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\caption_wild.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\deer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\elephant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\fox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\hedgehog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\lion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\squirrel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\tiger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Animals\wolf.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

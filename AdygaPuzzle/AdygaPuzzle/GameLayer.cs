@@ -72,6 +72,13 @@ namespace AdygaPuzzle
             _animal = animal;
         }
 
+        static void Swap(IList<Peace> list, int indexA, int indexB)
+        {
+            var tmp = list[indexA];
+            list[indexA] = list[indexB];
+            list[indexB] = tmp;
+        }
+
         protected override void AddedToScene()
         {
             base.AddedToScene();
@@ -119,18 +126,27 @@ namespace AdygaPuzzle
 
             AddChild(_fullPictureSprite);
 
+            // Sort by heagh
             _peaces.Sort(delegate (Peace x, Peace y)
             {
-                return x.Sprite.BoundingBox.Size.Height.CompareTo(y.Sprite.BoundingBox.Size.Height);
+                var xs = x.Sprite.BoundingBox.Size;
+                var ys = y.Sprite.BoundingBox.Size;
+                return xs.Height.CompareTo(ys.Height);
             });
+            
+            if (_peaces[4].HalfWidth < _peaces[3].HalfWidth)
+            {
+                Swap(_peaces, 4, 3);
+            }
 
-            const int XGAP = 50;
+
+            const int XGAP = 30;
             const int YGAP = 20;
             var viewPort = new CCRect(XGAP, YGAP, bounds.Size.Width - 2 * XGAP, bounds.Size.Height - 2 * YGAP);
 
             // Calculate exploded location
-            _peaces[4].DisassembledPos = new CCPoint(viewPort.MaxX - _peaces[4].HalfWidth, _peaces[4].HalfHeigh + viewPort.MinY);
-            _peaces[3].DisassembledPos = new CCPoint(viewPort.MaxX - _peaces[3].HalfWidth, viewPort.MaxY - _peaces[3].HalfHeigh);
+            _peaces[4].DisassembledPos = new CCPoint(viewPort.MaxX - _peaces[4].HalfWidth, viewPort.MaxY - _peaces[4].HalfHeigh);
+            _peaces[3].DisassembledPos = new CCPoint(viewPort.MaxX - _peaces[3].HalfWidth, _peaces[3].HalfHeigh + viewPort.MinY);
             _peaces[2].DisassembledPos = new CCPoint(viewPort.MinX + _peaces[2].HalfWidth, viewPort.MaxY - _peaces[2].HalfHeigh);
             _peaces[1].DisassembledPos = new CCPoint(viewPort.MinX + _peaces[1].HalfWidth, _peaces[1].HalfHeigh + viewPort.MinY);
             _peaces[0].DisassembledPos = new CCPoint(viewPort.MinX + _peaces[0].HalfWidth, _peaces[1].DisassembledMaxY + (_peaces[2].DisassembledMinY - _peaces[1].DisassembledMaxY)/2);
