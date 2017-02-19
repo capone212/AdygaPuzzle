@@ -1714,12 +1714,6 @@
 /processorParam:Quality=Best
 /build:Sounds/Animals/cow.wav
 
-#begin Sounds/Animals/crow.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Animals/crow.wav
-
 #begin Sounds/Animals/deer.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1743,12 +1737,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/Animals/duck.wav
-
-#begin Sounds/Animals/eagle.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Animals/eagle.wav
 
 #begin Sounds/Animals/elephant.wav
 /importer:WavImporter
@@ -1803,18 +1791,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/Animals/lion.wav
-
-#begin Sounds/Animals/owl.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Animals/owl.wav
-
-#begin Sounds/Animals/pigeon.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Animals/pigeon.wav
 
 #begin Sounds/Animals/rabbit.wav
 /importer:WavImporter
@@ -2129,4 +2105,70 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/balloon_pop.wav
+
+#begin Sounds/Animals/soroka.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/soroka.wav
+
+#begin Sounds/Animals/sova.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/sova.wav
+
+#begin Sounds/Animals/vorona.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/vorona.wav
+
+#begin Sounds/Animals/dyatel.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/dyatel.wav
+
+#begin Sounds/Animals/golub.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/golub.wav
+
+#begin Sounds/Animals/lastochka.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/lastochka.wav
+
+#begin Sounds/Animals/lebed.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/lebed.wav
+
+#begin Sounds/Animals/orel.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/orel.wav
+
+#begin Sounds/Animals/sinica.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/sinica.wav
+
+#begin Sounds/Animals/snegir.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/snegir.wav
+
+#begin Sounds/Animals/vorobey.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Animals/vorobey.wav
 
