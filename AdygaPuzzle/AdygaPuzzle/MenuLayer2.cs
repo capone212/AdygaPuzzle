@@ -30,37 +30,54 @@ using CocosSharp;
 
 namespace AdygaPuzzle
 {
+    public struct AnimalInfo
+    {
+        public AnimalInfo(string id, string name)
+        {
+            Id = id;
+            DisplayName = name;
+        }
+        public string Id;
+        public string DisplayName;
+    }
+
     public class MenuLayer : CCLayerColor
     {
         Director _activity;
-        List<string> _animals;
+        List<AnimalInfo> _animals;
         List<CCPoint> _menuPositions = new List<CCPoint>();
 
-        Dictionary<string, CCSprite> _sprites = new Dictionary<string, CCSprite>();
+        Dictionary<AnimalInfo, CCSprite> _sprites = new Dictionary<AnimalInfo, CCSprite>();
         CCSprite _menuLeft;
         CCSprite _menuRight;
         CCSprite _toTopmenu;
+        CCSprite _musicOnOff;
         List<CCSprite> _pageBalls = new List<CCSprite>();
         int _currentPage = 0;
         string _displayName;
+        float _menuY;
 
         void initByType(string type)
         {
             if (type == "home")
             {
-                _animals = new List<string>(new string[] { "cat", "chicken", "cock", "cow", "dog", "donkey", "duck", "goat", "goose", "horse", "lamb", "rabbit", "turkey" });
+                _animals = new List<AnimalInfo>(new AnimalInfo[] { new AnimalInfo("cat", "ДЖЭДУ"), new AnimalInfo("chicken", "ДЖЭД"), new AnimalInfo("cock", "АДАКЪЭ"),
+                    new AnimalInfo("cow", "ЖЭМ"), new AnimalInfo("dog", "ХЬЭ"), new AnimalInfo("donkey", "ШЫД"), new AnimalInfo("duck", "БЭБЫЩ"), new AnimalInfo("goat", "БЖЭН"),
+                    new AnimalInfo("goose", "КЪАЗ"), new AnimalInfo("horse", "ШЫ"), new AnimalInfo("lamb", "МЭЛ"), new AnimalInfo("rabbit", "ТХЬЭКIУМЭКIЫХЬ"), new AnimalInfo("turkey", "ГУЭГУШ") });
                 _displayName = "УНАГЪУЭ ПСЭУЩХЬЭХЭР";
                 return;
             }
             else if (type == "wild")
             {
-                _animals = new List<string>(new string[] { "bear", "camel", "deer", "elephant", "fox", "hedgehog", "lion", "squirrel", "tiger", "wolf" });
+                _animals = new List<AnimalInfo>(new AnimalInfo[] { new AnimalInfo("bear", "МЫЩЭ"), new AnimalInfo("camel", "МАХЪШЭ"), new AnimalInfo("deer", "ЩЫХЬ"), new AnimalInfo("elephant", "ПЫЛ"),
+                    new AnimalInfo("fox", "БАЖЭ"), new AnimalInfo("hedgehog", "ЦЫЖЬБАНЭ"), new AnimalInfo("lion", "АСЛЪЭН"), new AnimalInfo("squirrel", "КIЭПХЪ"), new AnimalInfo("tiger", "КЪЭПЛЪЭН"), new AnimalInfo("wolf", "ДЫГЪУЖЬ") });
                 _displayName = "ХЬЭКIЭКХЪУЭКIЭХЭР";
                 return;
             }
 
             // birds
-            _animals = new List<string>(new string[] { "dyatel", "golub", "lastochka", "lebed", "sinica", "snegir", "soroka", "sova", "vorobey", "vorona", "orel" });
+            _animals = new List<AnimalInfo>(new AnimalInfo[] { new AnimalInfo("dyatel", "ЖЫГУIУ"), new AnimalInfo("golub", "ТХЬЭРЫКЪУЭ"), new AnimalInfo("lastochka", "ПЦIАЩХЪУЭ"), new AnimalInfo("lebed", "КЪЫУ"), new AnimalInfo("sinica", "ЦЫЖЬДАДЭ"),
+                new AnimalInfo("snegir", "БЗУПАГУЭ"), new AnimalInfo("soroka", "КЪАНЖЭ"), new AnimalInfo("sova", "ЖЬЫНДУ"), new AnimalInfo("vorobey", "БЗУ"), new AnimalInfo("vorona", "КЪУАРГЪ"), new AnimalInfo("orel", "БГЪЭ") });
             _displayName = "КЪУАЛЭ БЗУХЭР";
         }
 
@@ -72,10 +89,10 @@ namespace AdygaPuzzle
             initByType(type);
             for (int i = 0; i < 4; i++)
             {
-                for (int j = 0; j < 2; j++)
+                for (int j = 0; j < 1; j++)
                 {
                     var x = 150 + i * 230;
-                    var y = 540 - 130 - j * 180 - 50;
+                    var y = 540 - 200 - j * 180 - 50;
                     _menuPositions.Add(new CCPoint(x, y));
                 }
             }
@@ -88,12 +105,18 @@ namespace AdygaPuzzle
             _menuLeft = new CCSprite("left");
             _menuRight = new CCSprite("right");
             var menuY = _menuLeft.ContentSize.Height / 2 + 20;
+            _menuY = menuY;
 
             if (_toTopmenu == null)
             {
                 _toTopmenu = new CCSprite("back");
                 _toTopmenu.Position = new CCPoint(50, menuY);
                 AddChild(_toTopmenu);
+            }
+
+            if (_musicOnOff == null)
+            {
+                onMusicOnOff();
             }
 
             int pagesCount = (_animals.Count - 1) / _menuPositions.Count + 1;
@@ -118,6 +141,19 @@ namespace AdygaPuzzle
             _menuRight.PositionY = menuY;
             AddChild(_menuRight);
             AddChild(_menuLeft);
+        }
+
+        void onMusicOnOff()
+        {
+            if (_musicOnOff != null)
+            {
+                RemoveChild(_musicOnOff);
+                _musicOnOff.Dispose();
+            }
+            _musicOnOff = new CCSprite(_activity.IsMusisOn ? "sound-on" : "sound-off");
+            _musicOnOff.Position = new CCPoint(120, _menuY);
+            _musicOnOff.Color = CCColor3B.Blue;
+            AddChild(_musicOnOff);
         }
 
         void RefreshControls()
@@ -164,13 +200,20 @@ namespace AdygaPuzzle
                 var position = _menuPositions.Count * _currentPage + i;
                 if (position >= _animals.Count)
                     break;
-                var name = _animals[position];
-                var sprite = new CCSprite(name + ".png");
+                var animalInfo = _animals[position];
+                var sprite = new CCSprite(animalInfo.Id + ".png");
                 sprite.Position = _menuPositions[i];
-                _sprites[name] = sprite;
+                _sprites[animalInfo] = sprite;
                 _activity.LogInfo(string.Format("Drawing sprite {0} position x={1} y={2} ", _animals[position], sprite.PositionX, sprite.PositionY));
                 AddChild(sprite);
             }
+        }
+
+        public AnimalInfo GetNextAnimal(AnimalInfo info)
+        {
+            var index = _animals.IndexOf(info) + 1;
+            index = index < _animals.Count ? index : 0;
+            return _animals[index];
         }
 
         protected override void AddedToScene()
@@ -239,6 +282,12 @@ namespace AdygaPuzzle
                 _activity.RunTopMenu();
                 return;
             }
+
+            if (isTouchingPeace(touch, _musicOnOff))
+            {
+                _activity.IsMusisOn = !_activity.IsMusisOn;
+                onMusicOnOff();
+            }
             
         }
 
@@ -264,6 +313,8 @@ namespace AdygaPuzzle
 
         bool isTouchingPeace(CCTouch touch, CCSprite peace)
         {
+            if (peace == null)
+                return false;
             // This includes the rectangular white space around our sprite
             return peace.BoundingBox.ContainsPoint(touch.Location);
         }

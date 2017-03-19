@@ -21,15 +21,16 @@ namespace AdygaPuzzle
         CCGameView _gameView = null;
         CCScene _gameScene = null;
         CCScene _menuScene = null;
-        GameLayer _gameLayer = null;
+        bool _isMusicOn = true;
 
         public Director(IMainActivity parent, CCGameView gameView)
         {
             _parent = parent;
             _gameView = gameView;
             _menuScene = new CCScene(_gameView);
+            _gameScene = new CCScene(_gameView);
             Rand = new Random(Guid.NewGuid().GetHashCode());
-            PlayBackgroundMusic();
+            initBackgroundMusic();
         }
 
         public Random Rand
@@ -37,21 +38,22 @@ namespace AdygaPuzzle
             get; private set;
         }
 
-        public void RunGame(string type, string animal)
+        public void RunNextGame(string type, AnimalInfo animal)
         {
-            if (_gameScene != null)
-                _gameScene.Dispose();
+            animal = _menuLayer.GetNextAnimal(animal);
+            RunGame(type, animal);
+        }
 
-            if (_gameLayer != null)
-                _gameLayer.Dispose();
+        public void RunGame(string type, AnimalInfo animal)
+        {
             try
             {
-                _gameScene = new CCScene(_gameView);
-                _gameLayer = new GameLayer(this, type, animal);
-                _gameScene.AddLayer(_gameLayer);
+                _gameScene.RemoveAllChildren();
+                var gameLayer = new GameLayer(this, type, animal);
+                _gameScene.AddLayer(gameLayer);
                 var balloonLayer = new PopBalloon(this);
                 _gameScene.AddLayer(balloonLayer);
-                _gameLayer.StartGame(balloonLayer);
+                gameLayer.StartGame(balloonLayer);
                 _gameView.RunWithScene(_gameScene);
             }
             catch (Exception ex)
@@ -89,13 +91,39 @@ namespace AdygaPuzzle
             _gameView.RunWithScene(_topMenuScene);
         }
 
-        void PlayBackgroundMusic()
+        
+        public bool IsMusisOn
+        {
+            get
+            {
+                return _isMusicOn;
+            }
+            set
+            {
+                _isMusicOn = value;
+                playBackgroundMusic(value);
+            }
+        }
+        
+        void initBackgroundMusic()
+        {
+            CCAudioEngine.SharedEngine.BackgroundMusicVolume = 0.05f;
+            CCAudioEngine.SharedEngine.EffectsVolume = 0.9f;
+            CCAudioEngine.SharedEngine.PlayBackgroundMusic(filename: "Sounds/background_theme", loop: true);
+        }
+
+        void playBackgroundMusic(bool value)
         {
             try
             {
-                CCAudioEngine.SharedEngine.BackgroundMusicVolume = 0.05f;
-                CCAudioEngine.SharedEngine.EffectsVolume = 0.9f;
-                CCAudioEngine.SharedEngine.PlayBackgroundMusic(filename: "Sounds/background_theme", loop: true);
+                if (value)
+                {
+                    CCAudioEngine.SharedEngine.ResumeBackgroundMusic();
+                }
+                else
+                {
+                    CCAudioEngine.SharedEngine.PauseBackgroundMusic();
+                }
             }
             catch (Exception ex)
             {

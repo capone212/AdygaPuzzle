@@ -9,6 +9,7 @@ using System.IO;
 
 namespace AdygaPuzzle
 {
+
     class Peace
     {
         public Peace(CCSprite s, CCPoint a)
@@ -57,7 +58,7 @@ namespace AdygaPuzzle
 
     public class GameLayer : CCLayerColor
     {
-        string _animal;
+        AnimalInfo _animal;
         Director _parent;
         image _currentImage;
         List<Peace> _peaces = new List<Peace>();
@@ -67,8 +68,11 @@ namespace AdygaPuzzle
         CCSprite _toMenu;
         PopBalloon _baloonLayer = null;
         string _animalType;
+        CCLabel _label;
+        CCSprite _nextAnimal;
+        volatile bool _cancelled = false;
 
-        public GameLayer(Director parent, string type, string animal) : base(CCColor4B.Blue)
+        public GameLayer(Director parent, string type, AnimalInfo animal) : base(CCColor4B.Blue)
         {
             _parent = parent;
             _animalType = type;
@@ -91,7 +95,7 @@ namespace AdygaPuzzle
             // ----------------------- Start
             _parent.LogInfo("[XML_TEST] writing xml");
             // TODO: open with content manager not with android specific staff.
-            using (var stackXml = _parent.OpenAsset("Content/Images/Animals/"+_animal+"/stack.xml"))
+            using (var stackXml = _parent.OpenAsset("Content/Images/Animals/"+_animal.Id+"/stack.xml"))
             {
                 _currentImage = ParseHelpers.ParseXML<image>(stackXml);
             }
@@ -108,8 +112,8 @@ namespace AdygaPuzzle
 
             foreach (var peace in _currentImage.stack)
             {
-                string prefix = _animal;
-                var spite = new CCSprite(_animal + "/" + peace.src);
+                string prefix = _animal.Id;
+                var spite = new CCSprite(_animal.Id + "/" + peace.src);
                 spite.PositionX = (spite.ContentSize.Width) / 2 + peace.x;
                 spite.PositionY = _currentImage.h - peace.y - (spite.ContentSize.Height -1) / 2;
                 _parent.LogInfo(string.Format("Adding spyte {0} content size X:{1} Y:{2} W:{3} H:{4}", prefix + peace.src, spite.PositionX, spite.PositionY, spite.ContentSize.Width, spite.ContentSize.Height));
@@ -159,6 +163,27 @@ namespace AdygaPuzzle
             _peaces[1].DisassembledPos = new CCPoint(viewPort.MinX + _peaces[1].HalfWidth, _peaces[1].HalfHeigh + viewPort.MinY);
             _peaces[0].DisassembledPos = new CCPoint(viewPort.MinX + _peaces[0].HalfWidth, _peaces[1].DisassembledMaxY + (_peaces[2].DisassembledMinY - _peaces[1].DisassembledMaxY)/2);
 
+            // Add caption label            
+            _label = new CCLabel(_animal.DisplayName, "Gagalin-36", 36, CCLabelFormat.SpriteFont);
+            _label.PositionX = bounds.Center.X;
+            _label.PositionY = bounds.MaxY - 20 - _label.ContentSize.Height / 2;
+            _label.Color = CCColor3B.Black;
+            AddChild(_label);
+            // detect and fix collision
+            if (_label.BoundingBox.IntersectsRect(_fullPictureSprite.BoundingBox))
+            {
+                _label.PositionX = _fullPictureSprite.BoundingBox.MaxX + _label.ContentSize.Width / 2 + 10;
+            }
+            _label.Visible = false;
+
+            // Add next level button
+            _nextAnimal = new CCSprite("nextAnimal");
+            _nextAnimal.PositionX = bounds.MaxX - 150;
+            _nextAnimal.PositionY = bounds.Center.Y;
+            AddChild(_nextAnimal);
+            _nextAnimal.Visible = false;
+
+
             // --- End
 
             // Register for touch events
@@ -181,7 +206,13 @@ namespace AdygaPuzzle
 
         void ScheduleAction(Action f, int milliseconds)
         {
-            new Timer( x=> { f(); }, null, milliseconds);
+            new Timer( x=> 
+            {
+                if (!_cancelled)
+                {
+                    f();
+                }
+            }, null, milliseconds);
         }
 
         void ScheduleBreak()
@@ -242,6 +273,9 @@ namespace AdygaPuzzle
 
         void AnimateCharacter()
         {
+            _label.Visible = true;
+            _nextAnimal.Visible = true;
+            _toMenu.Visible = true;
             _lastCharacterAnimated = DateTime.Now;
             var scaleIn = new CCEaseInOut(new CCScaleBy(0.5f, 1.1f), 1.5f);
             var scaleOut = new CCEaseInOut(new CCScaleBy(0.5f, 0.9f), 1.5f);
@@ -250,7 +284,7 @@ namespace AdygaPuzzle
             // create the sequence of actions, in the order we want to run them
             var animate = new CCSequence(scaleIn, delay, scaleOut);
             _fullPictureSprite.RunAction(animate);
-            CCAudioEngine.SharedEngine.PlayEffect(filename: _animal);
+            CCAudioEngine.SharedEngine.PlayEffect(filename: _animal.Id);
         }
 
         void HandleCharacterTouch()
@@ -258,7 +292,7 @@ namespace AdygaPuzzle
             if (!_lastCharacterAnimated.HasValue)
                 return;
             var diff = DateTime.Now - _lastCharacterAnimated.Value;
-            if (diff.TotalSeconds < 2)
+            if (diff.TotalSeconds < 1.5)
                 return;
             AnimateCharacter();
         }
@@ -303,13 +337,30 @@ namespace AdygaPuzzle
                         CCAudioEngine.SharedEngine.PlayEffect(filename: "fail");
                     }
                     _spiteToDrag = null;
-                }
-                else if (isTouchingPeace(touch, _fullPictureSprite))
-                {
-                    HandleCharacterTouch();
+                    return;
                 }
 
+                if (isTouchingPeace(touch, _fullPictureSprite))
+                {
+                    HandleCharacterTouch();
+                    return;
+                }
+
+                if (_nextAnimal.Visible && isTouchingPeace(touch, _nextAnimal))
+                {
+                    cancelAllEffects();
+                    _parent.RunNextGame(_animalType, _animal);
+                    return;
+                }
+
+                if (_toMenu.Visible && isTouchingPeace(touch, _toMenu))
+                {
+                    cancelAllEffects();
+                    _parent.RunMenu(_animalType);
+                    return;
+                }
             }
+
         }
 
         void OnTouchesBegan(List<CCTouch> touches, CCEvent touchEvent)
@@ -325,11 +376,12 @@ namespace AdygaPuzzle
                 }
             }
 
-            if (isTouchingPeace(touch, _toMenu))
-            {
-                _parent.RunMenu(_animalType);
-                return;
-            }
+        }
+
+        void cancelAllEffects()
+        {
+            _cancelled = true;
+            CCAudioEngine.SharedEngine.StopAllEffects();
         }
 
         void OnTouchesMoved(System.Collections.Generic.List<CCTouch> touches, CCEvent touchEvent)
@@ -348,7 +400,7 @@ namespace AdygaPuzzle
             }
         }
 
-        bool isTouchingPeace(CCTouch touch, CCSprite peace)
+        bool isTouchingPeace(CCTouch touch, CCNode peace)
         {
             // This includes the rectangular white space around our sprite
             return peace.BoundingBox.ContainsPoint(touch.Location);
@@ -367,6 +419,7 @@ namespace AdygaPuzzle
 
         public void StartPopBaloons()
         {
+            _toMenu.Visible = false;
             var layer = _baloonLayer;
             if (layer == null)
                 return;
@@ -384,6 +437,7 @@ namespace AdygaPuzzle
                 _parent.LogInfo(string.Format("[ERROR] Cant add baloon layer {0}", ex));
             }
         }
+
     }
 }
 
