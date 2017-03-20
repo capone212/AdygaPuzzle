@@ -54,6 +54,7 @@ namespace AdygaPuzzle
                 var balloonLayer = new PopBalloon(this);
                 _gameScene.AddLayer(balloonLayer);
                 gameLayer.StartGame(balloonLayer);
+               // CCAudioEngine.SharedEngine.PlayEffect(filename: "home-box-slide");
                 _gameView.RunWithScene(_gameScene);
             }
             catch (Exception ex)
@@ -76,6 +77,7 @@ namespace AdygaPuzzle
                 _menuLayer = new MenuLayer(this, type);
                 _menuScene.AddLayer(_menuLayer);
             }
+            CCAudioEngine.SharedEngine.PlayEffect(filename: "home-box-slide");
             _gameView.RunWithScene(_menuScene);
         }
 

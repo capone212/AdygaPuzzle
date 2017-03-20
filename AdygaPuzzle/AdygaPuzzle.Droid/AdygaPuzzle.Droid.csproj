@@ -72,9 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\Sounds\approve7.xnb" />
-    <AndroidAsset Include="Assets\Content\Sounds\break.xnb" />
-    <AndroidAsset Include="Assets\Content\Sounds\happykids.xnb" />
-    <AndroidAsset Include="Assets\Content\Sounds\lightapplause.xnb" />
+    <AndroidAsset Include="Assets\Content\Sounds\aplauz2.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\approve1.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\approve2.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\approve3.xnb" />
@@ -83,8 +81,6 @@
     <AndroidAsset Include="Assets\Content\Sounds\approve6.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\challenge1.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\challenge2.xnb" />
-    <AndroidAsset Include="Assets\Content\Sounds\fail.xnb" />
-    <AndroidAsset Include="Assets\Content\Sounds\success_partial.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\rabbit.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\rabbit_2.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\squirrel.xnb" />
@@ -113,7 +109,6 @@
     <AndroidAsset Include="Assets\Content\Sounds\Animals\lion.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\bear.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\background_theme.xnb" />
-    <AndroidAsset Include="Assets\Content\Sounds\balloon_pop.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\dyatel.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\golub.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\lastochka.xnb" />
@@ -126,6 +121,12 @@
     <AndroidAsset Include="Assets\Content\Sounds\Animals\vorona.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\vorobey.xnb" />
     <AndroidAsset Include="Assets\Content\Fonts\Gagalin-36.xnb" />
+    <AndroidAsset Include="Assets\Content\Sounds\baloon_pop.xnb" />
+    <AndroidAsset Include="Assets\Content\Sounds\elements-break.xnb" />
+    <AndroidAsset Include="Assets\Content\Sounds\wood-click.xnb" />
+    <AndroidAsset Include="Assets\Content\Sounds\wrong.xnb" />
+    <AndroidAsset Include="Assets\Content\Sounds\home-box-slide.xnb" />
+    <AndroidAsset Include="Assets\Content\Sounds\aplauz1.xnb" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -681,9 +682,6 @@
     <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\003.png" />
     <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\004.png" />
     <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\005.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\Content\Sounds\lightapplause.m4a" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\sparks.plist">

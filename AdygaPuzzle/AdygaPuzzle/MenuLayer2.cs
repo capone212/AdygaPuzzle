@@ -151,7 +151,7 @@ namespace AdygaPuzzle
                 _musicOnOff.Dispose();
             }
             _musicOnOff = new CCSprite(_activity.IsMusisOn ? "sound-on" : "sound-off");
-            _musicOnOff.Position = new CCPoint(120, _menuY);
+            _musicOnOff.Position = new CCPoint(150, _menuY);
             _musicOnOff.Color = CCColor3B.Blue;
             AddChild(_musicOnOff);
         }

@@ -23,7 +23,7 @@ namespace AdygaPuzzle
                 return;
             node.RemoveChild(balloon);
             balloon = null;
-            CCAudioEngine.SharedEngine.PlayEffect(filename: "balloon_pop");
+            CCAudioEngine.SharedEngine.PlayEffect(filename: "baloon_pop");
             node.StopAllActions();
             var easefall = new CCEaseIn(new CCMoveTo(2, new CCPoint(node.PositionX, -300)), 1.5f);
             node.RunAction(easefall);

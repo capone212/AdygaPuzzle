@@ -166,14 +166,9 @@ namespace AdygaPuzzle
             // Add caption label            
             _label = new CCLabel(_animal.DisplayName, "Gagalin-36", 36, CCLabelFormat.SpriteFont);
             _label.PositionX = bounds.Center.X;
-            _label.PositionY = bounds.MaxY - 20 - _label.ContentSize.Height / 2;
+            _label.PositionY = 20 + _label.ContentSize.Height / 2;
             _label.Color = CCColor3B.Black;
             AddChild(_label);
-            // detect and fix collision
-            if (_label.BoundingBox.IntersectsRect(_fullPictureSprite.BoundingBox))
-            {
-                _label.PositionX = _fullPictureSprite.BoundingBox.MaxX + _label.ContentSize.Width / 2 + 10;
-            }
             _label.Visible = false;
 
             // Add next level button
@@ -197,10 +192,10 @@ namespace AdygaPuzzle
         void breakToPeaces()
         {
             RemoveChild(_fullPictureSprite);
-            CCAudioEngine.SharedEngine.PlayEffect(filename: "break");
+            CCAudioEngine.SharedEngine.PlayEffect(filename: "elements-break");
             foreach (var p in _peaces)
             {
-                DisassemblePease(p);
+                DisassemblePease(p, 1.3f);
             }
         }
 
@@ -246,9 +241,9 @@ namespace AdygaPuzzle
             Challenge();
         }
 
-        void DisassemblePease(Peace p)
+        void DisassemblePease(Peace p, float seconds)
         {
-            var easeMove = new CCEaseBackOut(new CCMoveTo(1, p.DisassembledPos));
+            var easeMove = new CCEaseElasticOut(new CCMoveTo(seconds, p.DisassembledPos));
             p.Sprite.RunAction(easeMove);
         }
 
@@ -263,7 +258,7 @@ namespace AdygaPuzzle
             var index = _parent.Rand.Next(1, MAX_APPROVE_COUNT + 1);
             CCAudioEngine.SharedEngine.PlayEffect(filename: string.Format("approve{0}", index));
             ScheduleAction(()=>{
-                CCAudioEngine.SharedEngine.PlayEffect("happykids");
+                CCAudioEngine.SharedEngine.PlayEffect(string.Format("aplauz{0}", _parent.Rand.Next(1, 3)));
                 ScheduleAction(() => { StartPopBaloons(); }, 100);
                 ScheduleAction(() => { AnimateCharacter(); }, 8  * 1000);
             },1000);
@@ -275,6 +270,7 @@ namespace AdygaPuzzle
         {
             _label.Visible = true;
             _nextAnimal.Visible = true;
+            _toMenu.PositionX = 50;
             _toMenu.Visible = true;
             _lastCharacterAnimated = DateTime.Now;
             var scaleIn = new CCEaseInOut(new CCScaleBy(0.5f, 1.1f), 1.5f);
@@ -313,7 +309,7 @@ namespace AdygaPuzzle
 
         void AssemblePeace(Peace p)
         {
-            CCAudioEngine.SharedEngine.PlayEffect(filename: "success_partial");
+            CCAudioEngine.SharedEngine.PlayEffect(filename: "wood-click");
             var easeMove = new CCEaseBackOut(new CCMoveTo(0.2f, p.AssembledPos));
             p.Sprite.RunAction(easeMove);
             StarsFireworks(p.AssembledPos);
@@ -328,13 +324,12 @@ namespace AdygaPuzzle
         {
             if (touches.Count > 0)
             {
-                var touch = touches[0];
                 if (_spiteToDrag.HasValue)
                 {
                     if (!isPeaceCloseToHome(_spiteToDrag.Value.Peace))
                     {
-                        DisassemblePease(_spiteToDrag.Value.Peace);
-                        CCAudioEngine.SharedEngine.PlayEffect(filename: "fail");
+                        DisassemblePease(_spiteToDrag.Value.Peace, 1f);
+                        CCAudioEngine.SharedEngine.PlayEffect(filename: "wrong");
                     }
                     _spiteToDrag = null;
                     return;

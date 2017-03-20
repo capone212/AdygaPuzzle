@@ -2183,3 +2183,51 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Gagalin-36.spritefont
 
+#begin Sounds/elastic.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/elastic.wav
+
+#begin Sounds/assemble.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/assemble.mp3
+
+#begin Sounds/stealed/aplauz-2sec.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stealed/aplauz-2sec.mp3
+
+#begin Sounds/stealed/baloon_pop.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stealed/baloon_pop.mp3
+
+#begin Sounds/stealed/elements-break.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stealed/elements-break.mp3
+
+#begin Sounds/stealed/home-box-slide.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stealed/home-box-slide.mp3
+
+#begin Sounds/stealed/wood-click.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stealed/wood-click.mp3
+
+#begin Sounds/stealed/wrong.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stealed/wrong.mp3
+
