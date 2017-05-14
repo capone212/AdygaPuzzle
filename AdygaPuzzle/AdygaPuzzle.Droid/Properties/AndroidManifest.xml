@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="AdygaPuzzle.Droid" android:versionCode="1" android:versionName="1.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ru.nitagames.nitapuzzle" android:versionCode="5" android:installLocation="auto" android:versionName="1.0 alpha 3">
 	<uses-sdk />
-	<application android:label="AdygaPuzzle.Droid" android:icon="@drawable/Icon"></application>
+	<application />
 </manifest>

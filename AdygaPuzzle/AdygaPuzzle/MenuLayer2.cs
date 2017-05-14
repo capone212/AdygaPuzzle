@@ -62,7 +62,7 @@ namespace AdygaPuzzle
             if (type == "home")
             {
                 _animals = new List<AnimalInfo>(new AnimalInfo[] { new AnimalInfo("cat", "ДЖЭДУ"), new AnimalInfo("chicken", "ДЖЭД"), new AnimalInfo("cock", "АДАКЪЭ"),
-                    new AnimalInfo("cow", "ЖЭМ"), new AnimalInfo("dog", "ХЬЭ"), new AnimalInfo("donkey", "ШЫД"), new AnimalInfo("duck", "БЭБЫЩ"), new AnimalInfo("goat", "БЖЭН"),
+                    new AnimalInfo("cow", "ЖЭМ"), new AnimalInfo("dog", "ХЬЭ"), new AnimalInfo("donkey", "ШЫД"), new AnimalInfo("duck", "БАБЫЩ"), new AnimalInfo("goat", "БЖЭН"),
                     new AnimalInfo("goose", "КЪАЗ"), new AnimalInfo("horse", "ШЫ"), new AnimalInfo("lamb", "МЭЛ"), new AnimalInfo("rabbit", "ТХЬЭКIУМЭКIЫХЬ"), new AnimalInfo("turkey", "ГУЭГУШ") });
                 _displayName = "УНАГЪУЭ ПСЭУЩХЬЭХЭР";
                 return;
@@ -70,7 +70,7 @@ namespace AdygaPuzzle
             else if (type == "wild")
             {
                 _animals = new List<AnimalInfo>(new AnimalInfo[] { new AnimalInfo("bear", "МЫЩЭ"), new AnimalInfo("camel", "МАХЪШЭ"), new AnimalInfo("deer", "ЩЫХЬ"), new AnimalInfo("elephant", "ПЫЛ"),
-                    new AnimalInfo("fox", "БАЖЭ"), new AnimalInfo("hedgehog", "ЦЫЖЬБАНЭ"), new AnimalInfo("lion", "АСЛЪЭН"), new AnimalInfo("squirrel", "КIЭПХЪ"), new AnimalInfo("tiger", "КЪЭПЛЪЭН"), new AnimalInfo("wolf", "ДЫГЪУЖЬ") });
+                    new AnimalInfo("fox", "БАЖЭ"), new AnimalInfo("hedgehog", "ЦЫЖЬБАНЭ"), new AnimalInfo("lion", "АСЛЪЭН"), new AnimalInfo("squirrel", "КIЭПХЪ"), new AnimalInfo("tiger", "КЪАПЛЪЭН"), new AnimalInfo("wolf", "ДЫГЪУЖЬ") });
                 _displayName = "ХЬЭКIЭКХЪУЭКIЭХЭР";
                 return;
             }

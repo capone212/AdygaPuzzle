@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CocosSharp;
@@ -22,6 +22,16 @@ namespace AdygaPuzzle
         public TopMenu(Director parent) : base(new CCColor4B(227, 79, 62))
         {
             _parent = parent;
+        }
+
+        void addLabel(string txt, float x, float y)
+        {
+            var label = new CCLabel(txt, "Gagalin-36", 36, CCLabelFormat.SpriteFont);
+            label.PositionX = x;
+            label.PositionY = y;
+            label.Color = CCColor3B.Black;
+            label.Scale = 0.7f;
+            AddChild(label);
         }
 
         protected override void AddedToScene()
@@ -48,6 +58,10 @@ namespace AdygaPuzzle
                     _allSprites.Add(new TopMenuItem { Name = peace.name, Sprite = spite });
                 }
             }
+
+            addLabel("УНАГЪУЭ ПСЭУЩХЬЭХЭР", 250, 60);
+            addLabel("КЪУАЛЭ БЗУХЭР", 700, 40);
+            addLabel("ХЬЭКIЭКХЪУЭКIЭХЭР", bounds.Center.X, 510);
 
             // Register for touch events
             var touchListener = new CCEventListenerTouchAllAtOnce();

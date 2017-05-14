@@ -17,7 +17,7 @@ using System.IO;
 
 namespace AdygaPuzzle.Droid
 {
-    [Activity(Label = "AdygaPuzzle.Droid", MainLauncher = true, Icon = "@drawable/icon",
+    [Activity(Label = "Nita Puzzle", MainLauncher = true, Icon = "@drawable/icon",
         AlwaysRetainTaskState = true,
         ScreenOrientation = ScreenOrientation.Landscape,
         LaunchMode = LaunchMode.SingleInstance,

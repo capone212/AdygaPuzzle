@@ -44,16 +44,18 @@ namespace AdygaPuzzle
 
     struct DraggingSpite
     {
-        public DraggingSpite(Peace p, CCPoint s)
+        public DraggingSpite(Peace p, CCPoint s, int touchId)
         {
             Peace = p;
             StartPosition = p.Sprite.Position;
             DragStart = s;
+            TouchId = touchId;
         }
 
         public Peace Peace;
         public CCPoint StartPosition;
         public CCPoint DragStart;
+        public int TouchId;
     }
 
     public class GameLayer : CCLayerColor
@@ -324,7 +326,7 @@ namespace AdygaPuzzle
         {
             if (touches.Count > 0)
             {
-                if (_spiteToDrag.HasValue)
+                if (_spiteToDrag.HasValue && touches.Any(x => x.Id == _spiteToDrag.Value.TouchId))
                 {
                     if (!isPeaceCloseToHome(_spiteToDrag.Value.Peace))
                     {
@@ -334,6 +336,8 @@ namespace AdygaPuzzle
                     _spiteToDrag = null;
                     return;
                 }
+
+                var touch = touches[0];
 
                 if (isTouchingPeace(touch, _fullPictureSprite))
                 {
@@ -360,13 +364,15 @@ namespace AdygaPuzzle
 
         void OnTouchesBegan(List<CCTouch> touches, CCEvent touchEvent)
         {
+            if (_spiteToDrag.HasValue)
+                return;
             // We only care about the first touch:
             var touch = touches[0];
             foreach (var p in _peaces)
             {
                 if (isTouchingPeace(touch, p.Sprite) && !isPeaceAtHome(p))
                 {
-                    _spiteToDrag = new DraggingSpite(p, touch.Location);
+                    _spiteToDrag = new DraggingSpite(p, touch.Location, touch.Id);
                     return;
                 }
             }
@@ -381,16 +387,15 @@ namespace AdygaPuzzle
 
         void OnTouchesMoved(System.Collections.Generic.List<CCTouch> touches, CCEvent touchEvent)
         {
-            // We only care about the first touch:
-            var locationOnScreen = touches[0].Location;
-            if (_spiteToDrag.HasValue)
+            if (_spiteToDrag.HasValue && touches.Any(x => x.Id == _spiteToDrag.Value.TouchId))
             {
                 var value = _spiteToDrag.Value;
+                var locationOnScreen = touches.Find(x => x.Id == value.TouchId).Location;
                 value.Peace.Sprite.Position = value.StartPosition + locationOnScreen - value.DragStart;
                 if (isPeaceCloseToHome(value.Peace))
                 {
-                    AssemblePeace(value.Peace);
                     _spiteToDrag = null;
+                    AssemblePeace(value.Peace);
                 }
             }
         }

@@ -57,7 +57,7 @@ namespace AdygaPuzzle.iOS
 
             if (gameView != null)
             {
-                var contentSearchPaths = new List<string>() { "Fonts", "Sounds", "Sounds/Animals", "Images/Animals" };
+                var contentSearchPaths = new List<string>() { "Fonts", "Sounds", "Sounds/Animals", "Images/Animals", "Images/Ballons" };
                 CCSizeI viewSize = gameView.ViewSize;
 
                 int width = 960;
@@ -72,20 +72,20 @@ namespace AdygaPuzzle.iOS
                 // Of course you're free to have a finer set of image resolutions e.g (ld, hd, super-hd)
                 if (width < viewSize.Width)
                 {
-                    contentSearchPaths.Add("Images/Hd");
+                    //contentSearchPaths.Add("Images/Hd");
                     //CCSprite.DefaultTexelToContentSizeRatio = 2.0f;
                 }
                 else
                 {
-                    contentSearchPaths.Add("Images/Ld");
-                    CCSprite.DefaultTexelToContentSizeRatio = 1.0f;
+                    //contentSearchPaths.Add("Images/Ld");
+                    //CCSprite.DefaultTexelToContentSizeRatio = 1.0f;
                 }
 
                 gameView.ContentManager.SearchPaths = contentSearchPaths;
 
                 // Construct game scene
                 _director = new Director(this, gameView);
-                _director.RunMenu();
+                _director.RunTopMenu();
             }
         }
 

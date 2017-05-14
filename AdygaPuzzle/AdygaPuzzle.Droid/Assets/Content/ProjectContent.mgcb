@@ -1991,22 +1991,6 @@
 /processor:
 /build:Sounds/approve7.xnb
 
-#begin Sounds/background_theme.m4a
-/importer:
-/processor:
-/build:Sounds/background_theme.m4a
-
-#begin Sounds/background_theme.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Sounds/background_theme.mp3
-
-#begin Sounds/background_theme.xnb
-/importer:
-/processor:
-/build:Sounds/background_theme.xnb
-
 #begin Sounds/break.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -2230,4 +2214,10 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/stealed/wrong.mp3
+
+#begin Sounds/background_theme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Medium
+/build:Sounds/background_theme.mp3
 
