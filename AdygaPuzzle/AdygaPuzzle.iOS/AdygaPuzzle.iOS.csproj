@@ -136,6 +136,7 @@
     <None Include="Content\Sounds\background_theme.xnb" />
     <None Include="Info.plist" />
     <None Include="packages.config" />
+    <BundleResource Include="Content\Images\Animals\splash.PNG" />
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
     <None Include="Properties\app.manifest" />
