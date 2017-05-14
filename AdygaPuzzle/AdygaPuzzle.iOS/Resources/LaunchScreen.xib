@@ -11,9 +11,6 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" image="Content/Images/Animals/splash.PNG">
-                    <rect key="frame" x="0.0" y="158" width="480" height="320"/>
-                </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2017 Nita Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye" misplaced="YES">
                     <rect key="frame" x="30" y="20" width="441" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -42,6 +39,5 @@
         </view>
     </objects>
     <resources>
-        <image name="Content/Images/Animals/splash.PNG" width="480" height="320"/>
     </resources>
 </document>
