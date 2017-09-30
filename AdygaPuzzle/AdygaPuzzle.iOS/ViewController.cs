@@ -34,7 +34,25 @@ namespace AdygaPuzzle.iOS
             base.ViewWillDisappear(animated);
 
             if (GameView != null)
+            {
                 GameView.Paused = true;
+            }
+        }
+
+        public void OnEnterBackground()
+        {
+            if (_director != null)
+            {
+                _director.OnEnterBackground();
+            }
+        }
+
+        public void OnEnterForegraund()
+        {
+            if (_director != null)
+            {
+                _director.OnEnterForegraund();
+            }
         }
 
         public override void ViewDidAppear(bool animated)
@@ -42,7 +60,9 @@ namespace AdygaPuzzle.iOS
             base.ViewDidAppear(animated);
 
             if (GameView != null)
+            {
                 GameView.Paused = false;
+            }
         }
 
         public override void DidReceiveMemoryWarning()

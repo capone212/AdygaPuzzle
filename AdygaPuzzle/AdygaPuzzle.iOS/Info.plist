@@ -7,7 +7,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>10.3</string>
+	<string>8.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -63,9 +63,9 @@
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>CFBundleVersion</key>
-	<string>6.0</string>
+	<string>9.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>1.4</string>
 	<key>CFBundleDisplayName</key>
 	<string>Nita Puzzle</string>
 </dict>

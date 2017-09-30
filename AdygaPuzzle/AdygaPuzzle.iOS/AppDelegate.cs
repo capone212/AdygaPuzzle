@@ -32,10 +32,17 @@ namespace AdygaPuzzle.iOS
             // Games should use this method to pause the game.
         }
 
+        ViewController getController(UIApplication application)
+        {
+            var rc = application.KeyWindow.RootViewController;
+            return rc as ViewController;
+        }
+
         public override void DidEnterBackground(UIApplication application)
         {
             // Use this method to release shared resources, save user data, invalidate timers and store the application state.
             // If your application supports background exection this method is called instead of WillTerminate when the user quits.
+            getController(application).OnEnterBackground();
         }
 
         public override void WillEnterForeground(UIApplication application)
@@ -48,6 +55,7 @@ namespace AdygaPuzzle.iOS
         {
             // Restart any tasks that were paused (or not yet started) while the application was inactive. 
             // If the application was previously in the background, optionally refresh the user interface.
+            getController(application).OnEnterForegraund();
         }
 
         public override void WillTerminate(UIApplication application)

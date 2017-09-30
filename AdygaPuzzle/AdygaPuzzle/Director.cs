@@ -120,10 +120,12 @@ namespace AdygaPuzzle
             {
                 if (value)
                 {
+                    CCAudioEngine.SharedEngine.BackgroundMusicVolume = 0.05f;
                     CCAudioEngine.SharedEngine.ResumeBackgroundMusic();
                 }
                 else
                 {
+                    CCAudioEngine.SharedEngine.BackgroundMusicVolume = 0f;
                     CCAudioEngine.SharedEngine.PauseBackgroundMusic();
                 }
             }
@@ -131,6 +133,19 @@ namespace AdygaPuzzle
             {
                 LogInfo(string.Format("[ERROR] can't play background music {0}", ex));
             }
+        }
+
+        public void OnEnterForegraund()
+        {
+            CCAudioEngine.SharedEngine.EffectsVolume = 0.9f;
+            CCAudioEngine.SharedEngine.ResumeAllEffects();
+            playBackgroundMusic(IsMusisOn);
+        }
+
+        public void OnEnterBackground()
+        {
+            CCAudioEngine.SharedEngine.PauseBackgroundMusic();
+            CCAudioEngine.SharedEngine.PauseAllEffects();
         }
 
 
