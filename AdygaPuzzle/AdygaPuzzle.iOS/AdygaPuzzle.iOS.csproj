@@ -92,6 +92,7 @@
     <MtouchFloat32>False</MtouchFloat32>
     <BuildIpa>True</BuildIpa>
     <IpaIncludeArtwork>False</IpaIncludeArtwork>
+    <CodesignProvision>a21484cd-a8a4-41cb-acc1-b93a04c2c238</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>D9E7C6CEE210295E86D0313D91E1808E95811430</ManifestCertificateThumbprint>
@@ -153,7 +154,6 @@
     <BundleResource Include="Content\Sounds\challenge1.xnb" />
     <BundleResource Include="Content\Sounds\challenge2.xnb" />
     <BundleResource Include="Content\Sounds\Animals\rabbit.xnb" />
-    <BundleResource Include="Content\Sounds\Animals\rabbit_2.xnb" />
     <BundleResource Include="Content\Sounds\Animals\squirrel.xnb" />
     <BundleResource Include="Content\Sounds\Animals\tiger.xnb" />
     <BundleResource Include="Content\Sounds\Animals\turkey.xnb" />

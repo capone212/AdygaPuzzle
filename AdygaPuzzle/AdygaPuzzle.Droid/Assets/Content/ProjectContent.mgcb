@@ -1798,12 +1798,6 @@
 /processorParam:Quality=Best
 /build:Sounds/Animals/rabbit.wav
 
-#begin Sounds/Animals/rabbit_2.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Animals/rabbit_2.wav
-
 #begin Sounds/Animals/squirrel.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

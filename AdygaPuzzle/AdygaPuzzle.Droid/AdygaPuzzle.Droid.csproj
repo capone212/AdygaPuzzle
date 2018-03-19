@@ -117,7 +117,6 @@
     <AndroidAsset Include="Assets\Content\Sounds\challenge1.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\challenge2.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\rabbit.xnb" />
-    <AndroidAsset Include="Assets\Content\Sounds\Animals\rabbit_2.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\squirrel.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\tiger.xnb" />
     <AndroidAsset Include="Assets\Content\Sounds\Animals\turkey.xnb" />
@@ -440,7 +439,7 @@
     <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\003.png" />
     <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\004.png" />
     <AndroidAsset Include="Assets\Content\Images\Animals\topmenu\data\005.png" />
-    <AndroidAsset Include="Assets\Content\sparks.plist"/>
+    <AndroidAsset Include="Assets\Content\sparks.plist" />
     <AndroidAsset Include="Assets\Content\Images\Animals\cock.png" />
     <AndroidAsset Include="Assets\Content\Images\Animals\cow.png" />
     <AndroidAsset Include="Assets\Content\Images\Animals\donkey.png" />

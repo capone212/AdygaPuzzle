@@ -63,9 +63,9 @@
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>CFBundleVersion</key>
-	<string>9.0</string>
+	<string>10.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4</string>
+	<string>1.5</string>
 	<key>CFBundleDisplayName</key>
 	<string>Nita Puzzle</string>
 </dict>

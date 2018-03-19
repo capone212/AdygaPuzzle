@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ru.nitagames.nitapuzzle" android:versionCode="5" android:installLocation="auto" android:versionName="1.0 alpha 3">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ru.nitagames.nitapuzzle" android:versionCode="6" android:installLocation="auto" android:versionName="1.0 release">
 	<uses-sdk />
 	<application />
 </manifest>
